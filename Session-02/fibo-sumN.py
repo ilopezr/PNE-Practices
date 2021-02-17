@@ -14,10 +14,12 @@ def fibosum(fibonacci, e):
     for i in fibonacci[:e]:
         suma += i
     return suma
-
-fibonacci = fibon(n)
-suma = fibosum(fibonacci, e)
-print('SUM OF THE FIRST 5 TERMS OF FIBONACCI SERIES: ', fibosum(fibonacci, 5))
-print('SUM OF THE FIRST 10 TERMS OF FIBONACCI SERIES: ', fibosum(fibonacci, 10) )
+try:
+    n = int(input('Enter here an integer number: '))
+    fibonacci = fibon(n)
+    print('SUM OF THE FIRST 5 TERMS OF FIBONACCI SERIES: ', fibosum(fibonacci, 5))
+    print('SUM OF THE FIRST 10 TERMS OF FIBONACCI SERIES: ', fibosum(fibonacci, 10))
+except ValueError:
+    print('This is not an integer number.')
 
 
