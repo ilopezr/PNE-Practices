@@ -17,3 +17,5 @@ try:
     print('The 15th fibonacci term: ', fibonacci[15])
 except ValueError:
     print('The value you have introduced is not an integer number.')
+except IndexError:
+    print('The number should be greater or equal 15.')
