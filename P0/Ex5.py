@@ -8,4 +8,4 @@ print('--------- | Exercise 5 | ---------')
 
 for gene in gene_list:
     sequence = Seq0.seq_read_fasta(GENE_FOLDER + gene + '.txt')
-    print('Gene', gene, ':', Seq0.seq_count(sequence)) #printea un diccionario
+    print('Gene', gene, ':', Seq0.seq_count(sequence)) #printea un dict
