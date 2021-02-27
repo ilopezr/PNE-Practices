@@ -40,7 +40,7 @@ def seq_count(sequence):
     #return gene_dict
 
 def seq_reverse(sequence):
-    return ''.join(reversed(sequence))
+    return sequence[::-1]
 
 def seq_complement(sequence):
     dict_complement = {'A': 'T', 'T':'A', 'C':'G', 'G':'C'}
