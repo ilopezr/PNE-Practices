@@ -19,7 +19,7 @@ def seq_count_base(sequence, base):
 def seq_count(sequence):
     a, c, g, t = 0, 0, 0, 0
 
-    for d in sequence: #Importante que la d sea distinta a a,g,c,t
+    for d in sequence: #Importante que la d sea distinta a a,g,c,t minúsculas
         if d == 'A':
             a += 1
         elif d == 'C':
@@ -34,7 +34,7 @@ def seq_count(sequence):
 
 #def seq_count(sequence):
     #gene_dict = {'A':0, 'C':0, 'G':0, 'T':0}
-    #for d in seq: #Importante que la d sea distinta a a,g,c,t
+    #for d in sequence: #Importante que la d sea distinta a a,g,c,t
         #gene_dict[d] += 1
     #return gene_dict
 
