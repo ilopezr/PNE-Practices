@@ -42,17 +42,16 @@ def seq_reverse(sequence):
     return ''.join(reversed(sequence))
 
 def seq_complement(sequence):
-
+    dict_complement = {'A': 'T', 'T':'A', 'C':'G', 'G':'C'}
     complement = ""
-    for i in range(0, len(sequence)):
-        if sequence[i] == "A":
-            complement = complement + "T"
-        elif sequence[i] == "T":
-            complement = complement + "A"
-        elif sequence[i] == "C":
-            complement = complement + "G"
-        elif sequence[i] == "G":
-            complement = complement + "C"
-    return complement
+    try:
+        for i in sequence:
+                complement = complement + dict_complement[i]
+        return complement
+    except KeyError:
+        return 'Can not calculate the complement. The sequence must only contain A,C,T,G bases.'
+
+
+
 
 
