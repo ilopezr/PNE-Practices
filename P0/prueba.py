@@ -1,6 +1,8 @@
-i ='ABC'
-print(''.join(reversed(i)))
+i = {'A':2, 'E':3}
+print(list(i)[1][0])
 
+
+print(sorted(i))
 
 import Seq0
 from pathlib import Path
@@ -21,4 +23,4 @@ for gene in gene_list:
     if G >= A and G >= C and G >=T:
         print('Gene ', gene, ': Most frequent Base: G')
     if T >= A and T >= C and T >=G:
-        print('Gene ', gene, ': Most frequent Base: T')
+        print('Gene ', gene, ': Most frequent Base: T') #I put in all of them if and not elif, just because if there`s a tie

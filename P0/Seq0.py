@@ -1,4 +1,5 @@
 from pathlib import Path #and what does Path make? Sirve para abrir un archivo
+import operator
 
 def seq_ping():
     print('Ok')
@@ -50,6 +51,11 @@ def seq_complement(sequence):
         return complement
     except KeyError:
         return 'Can not calculate the complement. The sequence must only contain A,C,T,G bases.'
+
+def processing_genes(sequence):
+    counter_dict = {'A': sequence.count('A'), 'C': sequence.count('C'), 'G': sequence.count('G'), 'T': sequence.count('T')}
+    counter_dict_sorted = sorted(counter_dict.items(), key=operator.itemgetter(1), reverse=True)
+    return counter_dict_sorted[0][0]
 
 
 
