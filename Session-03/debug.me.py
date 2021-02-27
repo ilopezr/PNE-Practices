@@ -1,9 +1,5 @@
-# --- Find the error!
-
-
 def g(a, b):
     return a - b
-
 
 def f(a, b, c, d):
     t0 = a + b - g(a, 0)
@@ -12,14 +8,13 @@ def f(a, b, c, d):
         t3 = 2 * (t0 / t1)
         return t0 + 2 * t1 + t3 * t3
     except ZeroDivisionError:
-        return 'Can not calculate that. ' #Solo return strings para errores
+        return 'Can not calculate that.' #Solo return strings para errores
 
-    #Los sintaxerrors se marcan con una línea roja debajo, checkear antes de run 
-
-
+    #Los syntaxerrors se marcan con una línea roja debajo, checkear antes de run
 
 # -- Main program
 print("Result 1: ", f(5, 2, 5, 0))
 print("Result 2: ", f(0, 2, 3, 3))
 print("Result 3: ", f(1, 3, 2, 3))
 print("Result 4: ", f(1, 9, 22.0, 3))
+

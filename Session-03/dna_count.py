@@ -2,7 +2,7 @@ def correct_sequence(seq_dna):
     for i in seq_dna:
         if i != 'A' or i != 'T' or i != 'C' or i != 'G':
             return False
-    return True
+    return True #Si returnea eso significará que no se ha metido dentro del if, por tanto, estará bien la cadena.
 
 def count_bases(seq_dna):
     a, g, c, t = 0 , 0, 0, 0
@@ -20,9 +20,9 @@ def count_bases(seq_dna):
 seq_dna = input('Enter here a dna sequence: ')
 correct_dna = correct_sequence(seq_dna)
 
-if correct_dna:
+if correct_dna: #Same as :  if correct_dna == True:
     a, g, c, t = count_bases(seq_dna) #De esta manera solo se ejecuta el bucle una vez cuando hacemos luego el print
-    #Evita running el loop muchas veces, solo run 1 vez
+#Evita running el loop muchas veces, solo run 1 vez
 
     print('Number of "A" :', a)
     print('Number of "G" :', g)
@@ -31,4 +31,4 @@ if correct_dna:
     print('Longitud de la sequencia: ', len(seq_dna))
 
 else:
-
+    print('The seq_dna is not correct. Please introduce another one.')

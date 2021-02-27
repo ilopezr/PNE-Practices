@@ -1,6 +1,6 @@
 def correct_sequence(seq_dna):
     for i in seq_dna:
-        if i != 'A' or i != 'T' or i != 'C' or i != 'G':
+        if i != 'A' and i != 'T' and i != 'C' and i != 'G':
             return False
     return True
 
@@ -19,12 +19,10 @@ def count_bases(seq_dna):
 
 def read_from_file(filename):
     with open(filename, 'r') as f:
-        seq_dna = f.read()
-        seq_dna.replace('\n', '')
+        seq_dna = f.read().replace('\n', '') #Lee todo_ el archivo de una
         return seq_dna
 
-
-seq_dna = read_from_file(dna.txt)
+seq_dna = read_from_file('dna.txt')
 correct_dna = correct_sequence(seq_dna)
 
 if correct_dna:
@@ -38,4 +36,4 @@ if correct_dna:
     print('Longitud de la sequencia: ', len(seq_dna))
 
 else:
-    pass
+    print('The seq_dna is not correct.')
