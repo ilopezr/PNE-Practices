@@ -9,7 +9,7 @@ in the Seq0 module"""
 
 PROJECT_PATH = '../P0/sequences/'
 
-print('--------- |Practice 1, Exercise 9| ---------')
+print('--------- |Practice 1, Exercise 10| ---------')
 
 list_sequences = ['U5.txt','ADA.txt', 'FRAT1.txt', 'FXN.txt', 'RNU6_269P.txt']
 

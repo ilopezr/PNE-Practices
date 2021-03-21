@@ -1,4 +1,4 @@
-import P0.Seq0 as Seq0
+import P0.Seq0 as Seq0 # o tambien si marcamos P0 como sources root, import Seq 0
 
 FOLDER = './sequences/' #Un solo punto significa dentro de la carpeta en el que tenemos este archivo, dos puntos significan dentro de PNE PRACTICES (la carpeta padre del anterior), y asi...
 ID = 'ADA.txt'

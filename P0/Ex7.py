@@ -1,5 +1,4 @@
 import Seq0
-from pathlib import Path
 
 GENE_FOLDER = './sequences/'
 FILENAME = 'U5.txt'

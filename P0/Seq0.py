@@ -1,26 +1,25 @@
-from pathlib import Path #and what does Path make? Sirve para abrir un archivo
-import operator
-import termcolor
+from pathlib import Path #Sirve para abrir un archivo
+import operator #Para ordenar unos diccionarios
+import termcolor #Para poner el código de colores
 
 def seq_ping():
     print('Ok')
 
-def take_out_first_line(sequence):
+def take_out_first_line(sequence): #Quitar la primera linea de un archivo fasta
     return sequence[sequence.find("\n")+ 1:].replace('\n', '')
 
-def seq_read_fasta(filename):
+def seq_read_fasta(filename): #LEER, ALMACENAR un body de un archivo fasta
     sequence = take_out_first_line(Path(filename).read_text()) #We are working with strings not with files
     return sequence
 
-def seq_len(sequence):
+def seq_len(sequence): #longitud de una secuencia
     return len(sequence)
 
-def seq_count_base(sequence, base):
+def seq_count_base(sequence, base): #contar el número de una base de una sequencia
     return sequence.count(base)
 
-def seq_count(sequence):
+def seq_count(sequence): #Diccionario con el numero de todas las bases de una secuencia
     a, c, g, t = 0, 0, 0, 0
-
     for d in sequence: #Importante que la d sea distinta a a,g,c,t minúsculas
         if d == 'A':
             a += 1
@@ -33,7 +32,6 @@ def seq_count(sequence):
     return {'A':a, 'C':c, 'G':g, 'T':t}
 
 #Otra solucion, un poco mejor
-
 #def seq_count(sequence):
     #gene_dict = {'A':0, 'C':0, 'G':0, 'T':0}
     #for d in sequence: #Importante que la d sea distinta a a,g,c,t
@@ -58,11 +56,7 @@ def processing_genes(sequence):
     counter_dict_sorted = sorted(counter_dict.items(), key=operator.itemgetter(1), reverse=True)
     return counter_dict_sorted[0][0]
 
-def is_valid_sequence(self): #Inside the class
-    for i in self.strbases:
-        if i != 'A' and i != 'T' and i != 'C' and i != 'G':
-            return False
-        return True
+
 
 class Seq: #Dentro de las class, el orden de las funciones no es relevantes
 
@@ -89,21 +83,29 @@ class Seq: #Dentro de las class, el orden de las funciones no es relevantes
                 return False
             return True
 
+    def is_valid_sequence(self):
+        for i in self.strbases:
+            if i != 'A' and i != 'T' and i != 'C' and i != 'G':
+                return False
+            return True
+
     def len(self):
         return len(self.strbases)
 
     @staticmethod
     def print_seqs(list_sequences):
         for i in range(0, len(list_sequences)):
-            text = 'Sequence' + str(i) + ': ( Lenght :' + str(list_sequences[i].len()) + ')' + str(list_sequences[i])
+            text = 'Sequence ' + str(i) + ': (Lenght : ' + str(list_sequences[i].len()) + ') ' + str(list_sequences[i])
             termcolor.cprint(text, 'yellow')
+
+#FUERA DE LA CLASS
 
 def generate_seqs(pattern, number):
     list_seq = []
     for i in range(0, number): #Creamos tantas secuencias como nos indique el número
         # A i = 0 ---> i = 1
-        list_seq.append(Seq(pattern * (i + 1)))
-    return list_seq
+        list_seq.append(Seq(pattern * (i + 1))) #NO ENTIENDO DE DONDE SALE ESE SEQ
+    return list_seq #Lista de cadenas
 
 
 

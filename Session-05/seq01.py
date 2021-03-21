@@ -24,7 +24,7 @@ class Seq: #Dentro de las class, el orden de las funciones no es relevantes
         print('INCORRECT sequence detected')  """
 
     def __init__(self, strbases): #Es una funcion que se usa para que s1 y s2 puedan usarse en las demas funciones que hay dentro de la class, solo se ejecute si stanciamos la class
-        if Seq.is_valid_sequence_2(strbases):
+        if Seq.is_valid_sequence_2(strbases): #if... == True:
             print('New sequence created')
             self.strbases = strbases
         else:
@@ -39,7 +39,7 @@ class Seq: #Dentro de las class, el orden de las funciones no es relevantes
         self.strbases = 'Error'
         print('INCORRECT sequence detected')"""
 
-    def __str__(self):
+    def __str__(self): #NECESARIO PARA IMPRIMIR STRINGS!!
         """Method called when the object is being printed"""
         # -- We just return the string with the sequence
         return self.strbases
@@ -65,7 +65,7 @@ class Seq: #Dentro de las class, el orden de las funciones no es relevantes
     @staticmethod
     def print_seqs(list_sequences):
         for i in range(0, len(list_sequences)):
-            text = 'Sequence' + str(i) + ': ( Lenght :' + str(list_sequences[i].len()) + ')' + str(list_sequences[i])
+            text = 'Sequence ' + str(i) + ':(Lenght : ' + str(list_sequences[i].len()) + ') ' + str(list_sequences[i])
             termcolor.cprint(text, 'yellow')
 
 
@@ -82,4 +82,5 @@ def generate_seqs(pattern, number):
 # lo guarda en self.strbases para selfmethod o s1 para static methods
 
 #s2 = Seq("Hello? Am I a valid sequence?") #La función innit convierte esto a "Hello?..." y lo guarda en self.strbases
+
 
