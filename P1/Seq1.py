@@ -2,7 +2,7 @@ import termcolor
 from pathlib import Path
 import operator
 
-class Seq: #La primera letra e la class tiene que estar en mayúscula
+class Seq: #La primera letra de la class tiene que estar en mayúscula
 
     NULL_SEQUENCE = 'NULL'        #A CONSTANT IS A VALUE WHOSE VALUE IS NEVER GOING TO CHANGE, AND IT IS WRITTEN WITH UPPER LETTERS
     INVALID_SEQUENCE = 'ERROR'
@@ -17,7 +17,7 @@ class Seq: #La primera letra e la class tiene que estar en mayúscula
 
         else: #if strbases != Seq.NULL_SEQUENCE:
             if Seq.is_valid_sequence_2(strbases): #Si es una sequencia correcta... strbases = strbases / #Ponemos Seq. porque se trata de un staticmethod, al que hay que meterle arguments
-                print('New sequence created')
+                print('NEW sequence created')
                 self.strbases = strbases
             else:                                 #Si NO es una sequencia correcta... strbases == ERROR
                 self.strbases = Seq.INVALID_SEQUENCE
