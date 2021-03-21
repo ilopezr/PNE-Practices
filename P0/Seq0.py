@@ -1,6 +1,7 @@
-from pathlib import Path #Sirve para abrir un archivo
+"""ESTE ARCHIVO SÓLO ALMACENA FUNCTIONS Y NO CLASS"""
+
+from pathlib import Path #Sirve para abrir un archivo FASTA
 import operator #Para ordenar unos diccionarios
-import termcolor #Para poner el código de colores
 
 def seq_ping():
     print('Ok')
@@ -8,7 +9,7 @@ def seq_ping():
 def take_out_first_line(sequence): #Quitar la primera linea de un archivo fasta
     return sequence[sequence.find("\n")+ 1:].replace('\n', '')
 
-def seq_read_fasta(filename): #LEER, ALMACENAR un body de un archivo fasta
+def seq_read_fasta(filename): #Leer y almacenar el cuerpo de un archivo fasta
     sequence = take_out_first_line(Path(filename).read_text()) #We are working with strings not with files
     return sequence
 
@@ -53,52 +54,8 @@ def seq_complement(sequence):
 
 def processing_genes(sequence):
     counter_dict = {'A': sequence.count('A'), 'C': sequence.count('C'), 'G': sequence.count('G'), 'T': sequence.count('T')}
-    counter_dict_sorted = sorted(counter_dict.items(), key=operator.itemgetter(1), reverse=True)
-    return counter_dict_sorted[0][0]
-
-
-
-class Seq: #Dentro de las class, el orden de las funciones no es relevantes
-
-    def __init__(self, strbases): #Es una funcion que se usa para que s1 y s2 puedan usarse en las demas funciones que hay dentro de la class, solo se ejecute si stanciamos la class
-        if Seq.is_valid_sequence_2(strbases):
-            print('New sequence created')
-            self.strbases = strbases
-        else:
-            self.strbases = 'Error'
-            print('INCORRECT sequence detected')
-
-    def __str__(self):
-        """Method called when the object is being printed"""
-        # -- We just return the string with the sequence
-        return self.strbases
-
-    def len(self):
-        return len(self.strbases)
-
-    @staticmethod
-    def is_valid_sequence_2(bases):
-        for i in bases:
-            if i != 'A' and i != 'T' and i != 'C' and i != 'G':
-                return False
-            return True
-
-    def is_valid_sequence(self):
-        for i in self.strbases:
-            if i != 'A' and i != 'T' and i != 'C' and i != 'G':
-                return False
-            return True
-
-    def len(self):
-        return len(self.strbases)
-
-    @staticmethod
-    def print_seqs(list_sequences):
-        for i in range(0, len(list_sequences)):
-            text = 'Sequence ' + str(i) + ': (Lenght : ' + str(list_sequences[i].len()) + ') ' + str(list_sequences[i])
-            termcolor.cprint(text, 'yellow')
-
-#FUERA DE LA CLASS
+    counter_dict_sorted = sorted(counter_dict.items(), key=operator.itemgetter(1), reverse=True) #Ordena el diccionario según los items, de mayor a menor
+    return counter_dict_sorted[0][0] #coge el key del primer item, el key del item que más se repite
 
 def generate_seqs(pattern, number):
     list_seq = []

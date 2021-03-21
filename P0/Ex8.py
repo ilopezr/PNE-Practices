@@ -1,6 +1,6 @@
 import Seq0
-from pathlib import Path
-import operator
+
+"""Which is the most frequent base in each gene?"""
 
 GENE_FOLDER = './sequences/'
 gene_list =['U5' , 'ADA', 'FRAT1', 'FXN']
