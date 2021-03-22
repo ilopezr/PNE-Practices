@@ -1,5 +1,7 @@
 import termcolor
 import socket
+import colorama
+
 
 #Socket sirve para poder crear la conexión
 #Se puede importar dentro de la clase (o bien dentro de una def, o bien debajo de crear la class) pero asi también está bien
@@ -28,12 +30,13 @@ class Client:
         return 'Connection to SERVER at ' + self.ip + ', PORT:' + str(self.port) #ESTA FUNCION ES NECESARIA PARA IMPRIMIR CUALQUIER STR, TOODO LO QUE SE RETURNEE HA DE SER STR
 
     def talk(self, msg):
+        colorama.init(strip = 'False')
         # -- Create the socket
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # establish the connection to the Server (IP, PORT)
         s.connect((self.ip, self.port))
         # Send data
-        print('To server:', msg)
+        print(termcolor.colored('To server:' + msg, 'yellow'))
         s.send(str.encode(msg)) #encodeamos para convertir en bytes
 
         # Receive data, el 2048 es el numero de caracteres máximos que vamos a poder recibir
@@ -46,8 +49,8 @@ class Client:
         return response
 
     def debug_talk(self, msg):
+        colorama.init(strip='False')
         response_server = Client.talk(self, msg)
-        print('To server: ')
-        termcolor.cprint(msg, 'blue')
-        print('From server: ', '\n')
-        termcolor.cprint(response_server, 'yellow')
+        print('To server: ', termcolor.colored(msg, 'blue'))
+        print('From server: ', '\n' , '\n', termcolor.colored(response_server, 'yellow'))
+
