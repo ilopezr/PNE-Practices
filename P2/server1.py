@@ -1,3 +1,6 @@
+import termcolor
+import colorama
+
 #WE ALWAYS RUN FIRST THE SERVER AND THEN THE CLIENT. Una vez que hemos run el server le damos boton derecho
 # en la terminal,split right y runneamos el client.
 
@@ -22,6 +25,7 @@ try:
     serversocket.listen(MAX_OPEN_REQUESTS)
 
     while True:
+        colorama.init(strip='False')
         # accept connections from outside
         print("Waiting for connections at {}, {} ".format(IP, PORT))
         (clientsocket, address) = serversocket.accept()
@@ -34,7 +38,7 @@ try:
 
         # Read the message from the client, if any
         msg = clientsocket.recv(2048).decode("utf-8")
-        print("Message from client: {}".format(msg))
+        print("Message from client: {}".format(termcolor.colored(msg, 'green')))
 
         # Send the messag
         message = "Hello from the teacher's server"

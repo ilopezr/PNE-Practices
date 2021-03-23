@@ -1,4 +1,7 @@
 from client0 import Client
+import termcolor
+import colorama
+colorama.init(strip='False')
 
 PRACTICE = 2
 EXERCISE = 4
@@ -11,5 +14,5 @@ PORT = 12000
 #Create a client object
 c = Client(IP, PORT)
 
-c.debug_talk("Message 1---")
-c.debug_talk("Message 2: Testing !!!")
+c.debug_talk(termcolor.colored("Message 1---", 'blue'))
+c.debug_talk(termcolor.colored("Message 2: Testing !!!", 'blue'))
