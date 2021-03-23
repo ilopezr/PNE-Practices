@@ -37,7 +37,7 @@ class Client:
         s.connect((self.ip, self.port))
         # Send data
         #print(termcolor.colored('To server:' + msg, 'yellow'))
-        s.send(str.encode(termcolor.colored(msg, 'blue'))) #encodeamos para convertir en bytes
+        s.send(str.encode(termcolor.colored(msg, 'green'))) #encodeamos para convertir en bytes
 
         # Receive data, el 2048 es el numero de caracteres máximos que vamos a poder recibir
         response = s.recv(2048).decode("utf-8") #pasamos la respuesta desde bytes a string y la guardamos
