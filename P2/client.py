@@ -1,5 +1,6 @@
 import socket
-
+import termcolor
+import colorama
 # SERVER IP, PORT
 PORT = 12000 #El port no tiene que ser usado por ninguna aplicación más
 IP = "127.0.0.1"
@@ -16,6 +17,7 @@ s.connect((IP, PORT))
 s.send(str.encode("HELLO FROM THE CLIENT!!!"))
 
 # Receive data from the server
+colorama.init(strip = 'False')
 msg = s.recv(2048)
 print("MESSAGE FROM THE SERVER:\n")
 print(msg.decode("utf-8"))

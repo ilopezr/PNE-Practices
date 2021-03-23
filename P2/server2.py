@@ -1,4 +1,6 @@
 import socket
+import termcolor
+import colorama
 
 # Configure the Server's IP and PORT
 PORT = 12700 #El port ha de ser diferente en los diferentes servers
@@ -14,6 +16,7 @@ number_con = 0
 
 # create an INET, STREAMing socket
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
 try:
     serversocket.bind((IP, PORT))
     # become a server socket
@@ -21,6 +24,7 @@ try:
     serversocket.listen(MAX_OPEN_REQUESTS)
 
     while True:
+        colorama.init(strip='False')
         # accept connections from outside
         print("Waiting for connections at {}, {} ".format(IP, PORT))
         (clientsocket, address) = serversocket.accept()
@@ -33,7 +37,7 @@ try:
 
         # Read the message from the client, if any
         msg = clientsocket.recv(2048).decode("utf-8")
-        print("Message from client: {}".format(msg))
+        print("Message from client: {}".format(termcolor.colored(msg, 'green')))
 
         # Send the messag
         message = "Hello from the teacher's server"

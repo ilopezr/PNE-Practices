@@ -41,7 +41,7 @@ try:
         print("Message from client: {}".format(termcolor.colored(msg, 'green')))
 
         # Send the messag
-        message = "Hello from the teacher's server"
+        message = termcolor.colored("Hello from the teacher's server", 'green')
         # We must write bytes, not a string
         clientsocket.send(message.encode())
         clientsocket.close()

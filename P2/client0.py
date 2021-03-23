@@ -36,7 +36,7 @@ class Client:
         # establish the connection to the Server (IP, PORT)
         s.connect((self.ip, self.port))
         # Send data
-        #print(termcolor.colored('To server:' + msg, 'yellow'))
+        #print('To server:' , termcolor.colored(msg, 'blue'))
         s.send(str.encode(termcolor.colored(msg, 'green'))) #encodeamos para convertir en bytes
 
         # Receive data, el 2048 es el numero de caracteres máximos que vamos a poder recibir
@@ -52,5 +52,5 @@ class Client:
         colorama.init(strip='False')
         response_server = Client.talk(self, msg)
         print('To server: ', termcolor.colored(msg, 'blue'))
-        print('From server: ', 2 * '\n', termcolor.colored(response_server, 'yellow'))
+        print('From server: ', 2 * '\n', termcolor.colored(response_server, 'green'))
 

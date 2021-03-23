@@ -1,5 +1,7 @@
 from client0 import Client
 from pathlib import Path
+import termcolor
+import colorama
 
 PRACTICE = 2
 EXERCISE = 5
@@ -12,7 +14,7 @@ PORT = 12000
 
 
 c = Client(IP, PORT)
-
+colorama.init(strip='False')
 print('Response:' , c.talk('Sending the U5 gene to the server...'))
 print('From server:' , c.talk(Path('U5.txt').read_text())) #Leer el contenido de un FASTA FILE
 

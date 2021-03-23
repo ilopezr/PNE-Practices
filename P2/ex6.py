@@ -1,6 +1,8 @@
 from client0 import Client
-from pathlib import Path
 from Seq1 import Seq
+import termcolor
+import colorama
+
 
 PRACTICE = 2
 EXERCISE = 3
@@ -20,9 +22,10 @@ i = 0
 
 
 while i < len(s.strbases) and count < 5:
+    colorama.init(strip='False')
     fragment = s.strbases[i: i+10] #cogemos 10 bases
     count += 1
     i += 10
-    print('Fragment', count, ':', fragment)
-    print(c.talk(fragment)) #Para mandar los fragmentos al server
+    print('Fragment', count, ':', termcolor.colored(fragment, 'green')) #print en el client
+    print(c.talk(termcolor.colored('Fragment ' + str(count) + ':' + fragment, 'green'))) #Para mandar los fragmentos al server
     #Dentro del loop que si no solo vamos a mandar el ult fragment
