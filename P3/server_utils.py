@@ -1,5 +1,6 @@
 from Seq1 import Seq
 from pathlib import Path
+import time
 
 def print_colored(message, color):
     import termcolor
@@ -35,10 +36,16 @@ def info(cs, argument):
         print('A: ' + str(a) + ' (' + str(round(a * 100 / len(argument), 1)) + '%)')
         cs.send(('A: ' + str(a) + ' (' + str(round(a * 100 / len(argument), 1)) + '%)').encode())
         print('G: ' + str(g) + ' (' + str(round(g * 100 / len(argument), 1)) + '%)')
+
+        time.sleep(3) #Para no obtener ConnectionResetError
+
         cs.send(('G: ' + str(g) + ' (' + str(round(g * 100 / len(argument), 1)) + '%)').encode())
         print('C: ' + str(c) + ' (' + str(round(c * 100 / len(argument), 1)) + '%)')
         cs.send(('C: ' + str(c) + ' (' + str(round(c * 100 / len(argument), 1)) + '%)').encode())
         print('T: ' + str(t) + ' (' + str(round(t * 100 / len(argument), 1)) + '%)')
+
+        time.sleep(3)
+
         cs.send(('T: ' + str(t) + ' (' + str(round(t * 100 / len(argument), 1)) + '%)').encode())
 
     else:

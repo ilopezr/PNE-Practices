@@ -50,9 +50,10 @@ while True:
     # -- into a human-redeable string
     msg = msg_raw.decode()
     formatted_message = server_utils.format_command(msg)
-    print(termcolor.colored(formatted_message, 'green'))
+    #print(termcolor.colored(formatted_message, 'green'))
     formatted_message = formatted_message.split(" ")
-    print(formatted_message)#En el caso del GET 2, divide el mensaje en una lista con, 'ECHO' y con 2
+    #print(formatted_message)#En el caso del GET 2, divide el mensaje en una lista con, 'ECHO' y con 2
+
 
     #Cuando tenemos una string, y usamos el split, este lo que hace es crear una lista con elementos separados por lo que hay dentro del paréntesis del split
 
