@@ -15,7 +15,7 @@ class Seq:
 
         else: #if strbases != Seq.NULL_SEQUENCE:
             if Seq.is_valid_sequence_2(strbases): #Si es una sequencia correcta... strbases = strbases / #Ponemos Seq. porque se trata de un staticmethod, al que hay que meterle arguments
-                print('NEW sequence created')
+                print('New sequence created!')
                 self.strbases = strbases
             else:                                 #Si NO es una sequencia correcta... strbases == ERROR
                 self.strbases = Seq.INVALID_SEQUENCE

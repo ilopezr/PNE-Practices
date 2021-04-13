@@ -26,5 +26,5 @@ elif msg == 'GENE':
         client.talk(msg + ' ' + str(i))
 
 else:
-    print('The command is not correct. Try with this ones: PING, GET 1/2/3/4 , INFO, COMP, REV, GENE')
+    print('The command is not correct. Try with this ones: PING, GET, INFO, COMP, REV, GENE')
 

@@ -2,7 +2,6 @@ import termcolor
 import socket
 import colorama
 
-
 #Socket sirve para poder crear la conexión
 #Se puede importar dentro de la clase (o bien dentro de una def, o bien debajo de crear la class) pero asi también está bien
 
