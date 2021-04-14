@@ -16,8 +16,7 @@ elif msg == 'GET':
         client.talk(msg + ' ' + str(i))
 
 elif msg == 'INFO' or msg == 'COMP' or msg == 'REV':
-    sequence = client.talk('GET 0')
-    msg = msg + ' ' + str(sequence)
+    msg = msg + ' ' + str('AAACCCTTTT')  #client.talk('GET 0')
     client.talk(msg)
 
 elif msg == 'GENE':
