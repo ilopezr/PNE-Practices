@@ -28,18 +28,22 @@ def info(cs, argument):
     if correct_dna:  # Same as :  if correct_dna == True:
         argument_object = Seq(argument)
         a, g, c, t = argument_object.count_bases() # De esta manera solo se ejecuta el bucle una vez cuando hacemos luego el print
-        # Evita running el loop muchas veces, solo run 1 vez
+        list_bases = [a, g, c, t]
 
         print('Total length: ' + str(len(argument)))
         cs.send(('Total length: ' + str(len(argument))).encode())
-        print('A: ' + str(a) + ' (' + str(round(a * 100 / len(argument), 1)) + '%)')
+        for base in list_bases:
+            print(base.upper() + ': ' + str(base) + ' (' + str(round(base * 100 / len(argument), 1)) + '%)')
+            cs.send((base.upper() + ': ' + str(base) + ' (' + str(round(base * 100 / len(argument), 1)) + '%)').encode())
+
+        """print('A: ' + str(a) + ' (' + str(round(a * 100 / len(argument), 1)) + '%)')
         cs.send(('A: ' + str(a) + ' (' + str(round(a * 100 / len(argument), 1)) + '%)').encode())
         print('G: ' + str(g) + ' (' + str(round(g * 100 / len(argument), 1)) + '%)')
         cs.send(('G: ' + str(g) + ' (' + str(round(g * 100 / len(argument), 1)) + '%)').encode())
         print('C: ' + str(c) + ' (' + str(round(c * 100 / len(argument), 1)) + '%)')
         cs.send(('C: ' + str(c) + ' (' + str(round(c * 100 / len(argument), 1)) + '%)').encode())
         print('T: ' + str(t) + ' (' + str(round(t * 100 / len(argument), 1)) + '%)')
-        cs.send(('T: ' + str(t) + ' (' + str(round(t * 100 / len(argument), 1)) + '%)').encode())
+        cs.send(('T: ' + str(t) + ' (' + str(round(t * 100 / len(argument), 1)) + '%)').encode())"""
 
     else:
         print('The seq_dna is not correct. Please introduce another one.')
