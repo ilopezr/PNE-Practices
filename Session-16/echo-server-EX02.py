@@ -1,4 +1,3 @@
-[16:55] Rafael Villén Galera
 import http.server
 import socketserver
 import termcolor
