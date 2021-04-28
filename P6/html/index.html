@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Bases server</title>
+  </head>
+  <body>
+    <h1>Seq Server</h1>
+    <p>Access to the server</p>
+    <hr>
+    <form action="ping" method="get">
+        Is the server available?:  <input type="submit" value="PING">
+    </form>
+    <hr>
+    <form action="get" method="get">
+        Get a sequence. Select sequence number:
+        <select name="sequence">
+        <!--- ADD A LOOP IN A TEMPLATE TO GIVE OPTIONS --->
+            {% for n in range(0,context.n_sequences) %} <!--- #number of sequences available --->
+            <!--- context['n_sequences'] = context.n_sequences , y es para acceder al valor del key
+            n_sequences en el diccionario context, que mandamos desde el server. --->
+
+                <option value="{{n}}">{{n}}</option>
+            {% endfor %} <!--- cierra el loop --->
+        </select>
+        <input type="submit" value="GET">
+    </form>
+    <hr>
+    <form action="gene" method="get">
+        Get a gene. Select the name:
+        <select name="gene">
+            {% for n in context.list_genes %}
+                <option value="{{n}}">{{n}}</option>
+            {% endfor %} <!--- cierra el loop --->
+        </select>
+        <input type="submit" value="GENE">
+    </form>
+  </body>
+</html>
+
+<!--- INCISO: CUANDO CREAMOS {} PARA BUCLES U OTRAS COSAS, PARA ACCEDER A LAS VARIABLES NO HAY QUE USAR {{}}, A DIFERENCIA QUE SI LO
+HICIÉSEMOS FUERA DE LOS {}. POR QUÉ? PORQUE CUANDO USAMOS {} TENEMOS QUE USAR LA SINTAX DEL TEMPLATE, Y CUANDO NO, TENEMOS
+QUE USAR LA SINTAX DEL HTML. --->
