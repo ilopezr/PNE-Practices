@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>Bases server</title>
+      </head>
+      <body style="background-color: {{base_information.colour}};">
+        <h1>{{base_information.name}}</h1>
+        <p>Letter: {{base_information.letter}}</p>
+        <p>Chemical formula: {{base_information.formula}}</p>
+        <a href="{{base_information.link}}">More info</a>
+        <p></p>
+        <a href="/">Main Page</a>
+      </body>
+    </html>
+
+
+<!--Nos va a servir para todas las bases que tengamos -->
+<!-- Los valores name, letter... van a estar en el server, en una simple database - diccionario al que vamos a ir accediendo -->
+
+#base_information.link es lo mismo que hacer base_information[link]
