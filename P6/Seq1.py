@@ -68,17 +68,17 @@ class Seq:
 
     def reverse(self):
         if self.strbases == Seq.NULL_SEQUENCE:
-            return 'NULL sequence, cannot calculate reverse'
+            return 'Null Sequence. The result can not be calculated.'
         elif self.strbases == Seq.INVALID_SEQUENCE:
-            return 'ERROR, the sequence is incorrect, cannot calculate reverse'
+            return 'The result can not be calculated. The sequence you have introduced is not correct.'
         else:
             return self.strbases[::-1]
 
     def complement(self):
         if self.strbases == Seq.NULL_SEQUENCE:
-            return Seq.NULL_SEQUENCE
+            return 'Null Sequence. The result can not be calculated.'
         elif self.strbases == Seq.INVALID_SEQUENCE:
-            return Seq.INVALID_SEQUENCE
+            return 'The result can not be calculated. The sequence you have introduced is not correct.'
         else:
             complement = ''
             for ch in self.strbases:
