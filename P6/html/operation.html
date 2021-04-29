@@ -5,10 +5,13 @@
     <title>Seq server</title>
   </head>
   <body>
-    <h1>GENE {{context.gene_name}}</h1>
-    <textarea id="gene_content" name = "gene_bases" rows="5", cols="50">
-      {{context.gene_contents}}
-     </textarea>
+    <h1>Sequence </h1>
+    <p>{{context.sequence}}</p>
+    <h1>Operation: </h1>
+    <p>{{context.operation}}</p>
+    <h1>Result: </h1>
+    <p>{{context.result}}</p>
+
     <!-- This is a comment -->
     <a href="/">Main page</a>
   </body>

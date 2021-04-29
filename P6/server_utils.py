@@ -27,9 +27,9 @@ def get(list_sequences, seq_number):
     sequence = list_sequences[int(seq_number)] #almacenamos la secuencia que nos pide el client
     context = {
         'number': seq_number,
-        'sequence': list_sequences
+        'sequence': sequence
     } #crear el HTML con la secuencia que nos ha pedido el client
-    contents = read_template_html_file('./html.get.html').render(context=context)
+    contents = read_template_html_file('./html/get.html').render(context=context)
     return contents
 
 
@@ -37,21 +37,23 @@ def calculate_percentaje(number_repetitions, arg):
     return round(number_repetitions * 100 / len(arg), 1)
 
 
-def info(cs, argument):
-    print_colored('INFO', 'yellow')
-    print('Sequence:', argument)
-    correct_dna = Seq.is_valid_sequence_2(argument)
+def info(sequence, operation): #Esto es lo que se envía desde el server: contents = su.info(sequence, operation)
+
+    correct_dna = Seq.is_valid_sequence_2(sequence)
+
     if correct_dna:  # Same as :  if correct_dna == True:
-        argument_object = Seq(argument)
+        argument_object = Seq(sequence)
         a, g, c, t = argument_object.count_bases() # De esta manera solo se ejecuta el bucle una vez cuando hacemos luego el print
-        response = f""" Sequence: {argument}
-        Total length: {len(argument)} 
-        A: {a} {calculate_percentaje(a, argument)} %
-        C: {c} {calculate_percentaje(c, argument)} %
-        G: {g} {calculate_percentaje(g, argument)} %
-        T: {t} {calculate_percentaje(t, argument)} %"""  #MANDAMOS EL CÓDIGO SÓLO UNA VEZ, PORQUE SI NO, ConnectionResetError: [WinError 10054]
-        print(response)
-        cs.send(response.encode())
+        result = f""" Sequence: {sequence}
+        Total length: {len(sequence)} 
+        A: {a} {calculate_percentaje(a, sequence)} %
+        C: {c} {calculate_percentaje(c, sequence)} %
+        G: {g} {calculate_percentaje(g, sequence)} %
+        T: {t} {calculate_percentaje(t, sequence)} %"""  #MANDAMOS EL CÓDIGO SÓLO UNA VEZ, PORQUE SI NO, ConnectionResetError: [WinError 10054]
+
+        context = {'sequence': sequence, 'operation': operation, 'result': result}
+        contents = read_template_html_file('./html/operation.html').render(context=context)
+        return contents
 
     else:
         print('The seq_dna is not correct. Please introduce another one.')
@@ -74,6 +76,6 @@ def gene(seq_name): #CAMBIARLO
     PATH = './sequences/' + seq_name + '.txt'
     s1 = Seq()
     s1.seq_read_fasta(PATH)
-    context = {'gene_name': seq_name, 'gene_contents': s1.str_bases}
-    contents = read_template_html_file('/html/gene.html').render(context=context)
+    context = {'gene_name': seq_name, 'gene_contents': s1.strbases}
+    contents = read_template_html_file('./html/gene.html').render(context=context)
     return contents

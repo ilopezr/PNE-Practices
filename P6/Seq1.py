@@ -98,7 +98,7 @@ class Seq:
 
     def seq_read_fasta(self, filename):
         self.strbases = Seq.take_out_first_line(Path(filename).read_text())
-        return self.strbases
+
 
     def processing_genes(self):
         counter_dict = {'A': self.strbases.count('A'), 'C': self.strbases.count('C'), 'G': self.strbases.count('G'),

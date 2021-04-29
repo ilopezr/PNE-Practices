@@ -35,9 +35,17 @@
         </select>
         <input type="submit" value="GENE">
     </form>
+    <hr>
+    <form action="operation" method="get">
+        Write a sequence: <input type="text" name="sequence">
+            <br>
+        Select operation:
+        <input type="radio" name="calculation" value="Info"> Info
+        <input type="radio" name="calculation" value="Comp"> Comp
+        <input type="radio" name="calculation" value="Rev"> Rev
+            <br>
+        <input type="submit" value="OPERATE!">
+    </form>
   </body>
 </html>
 
-<!--- INCISO: CUANDO CREAMOS {} PARA BUCLES U OTRAS COSAS, PARA ACCEDER A LAS VARIABLES NO HAY QUE USAR {{}}, A DIFERENCIA QUE SI LO
-HICIÉSEMOS FUERA DE LOS {}. POR QUÉ? PORQUE CUANDO USAMOS {} TENEMOS QUE USAR LA SINTAX DEL TEMPLATE, Y CUANDO NO, TENEMOS
-QUE USAR LA SINTAX DEL HTML. --->

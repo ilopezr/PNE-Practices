@@ -66,8 +66,8 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         in the HTTP protocol request"""
 
         # Print the request line
-        termcolor.cprint(self.requestline, 'green') #GET /info/A HTTP/1.1
-        termcolor.cprint(self.path, 'blue') #/info/A
+        print(self.requestline) #GET /info/A HTTP/1.1
+        print(self.path) #/info/A
 
         o = urlparse(self.path) #Creating urlparse object --- #/test
         path_name = o.path #get the path, es mas o menos parecido a self.path PERO NO es lo mismo
@@ -133,6 +133,25 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         elif path_name == '/gene':
             gene = arguments['gene'][0]
             contents = su.gene(gene)
+
+        elif path_name == '/operations':
+
+            """ Fijarnos en lo que nos sale en la terminal: 
+            Resource requested:  /operation
+            Parameters: {'sequence': ['AAAA'], 'calculation': ['Comp']}"""
+
+            sequence = arguments['secuence'][0]
+            operation = arguments['operation'][0]
+
+
+            if operation == 'Info':
+                contents = su.info(sequence, operation)
+            elif operation == 'Comp':
+                pass
+            else:
+                pass
+
+
 
         else:
             contents = su.read_template_html_file("./html/error.html").render()
