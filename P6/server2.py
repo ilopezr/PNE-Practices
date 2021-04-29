@@ -21,6 +21,8 @@ LIST_SEQUENCES  = ['AAACCCTTTT', 'GGGCCCTTT', 'AGTAGT', 'CTGCTG', 'ATATATA']
 
 LIST_GENES = ['ADA', 'FRAT1', 'FXN', 'RNU269P', 'U5']
 
+LIST_OPERATIONS = ['Info', 'Comp', 'Rev']
+
 BASES_INFORMATION = {
     'A':{
         'link': "https://en.wikipedia.org/wiki/Adenine",
@@ -89,6 +91,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         if path_name == '/': #ESTA VA A SER NUESTRA PÁGINA PRINCIPAL, Y LO QUE SE VA A VER ESTÁ DENTRO DE INDEX.HTML
             context['n_sequences'] = len(LIST_SEQUENCES) #creamos key y value para mandar esa informacion a INDEX-HTML, que la va a usar
             context['list_genes'] = LIST_GENES #creamos una nueva key y value, el valor sera una lista con los nombres de las secuencias de genes
+            context['list_operations'] = LIST_OPERATIONS
             contents = su.read_template_html_file('./html/index.html').render(context=context)
 
         elif path_name == '/test': #Cuando trabajamos con forms si usamos self.path, la ruta luego se le añade un ? al final. SOLO PASA CON FORMS
@@ -134,22 +137,22 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             gene = arguments['gene'][0]
             contents = su.gene(gene)
 
-        elif path_name == '/operations':
+        elif path_name == '/operation':
 
             """ Fijarnos en lo que nos sale en la terminal: 
             Resource requested:  /operation
             Parameters: {'sequence': ['AAAA'], 'calculation': ['Comp']}"""
 
-            sequence = arguments['secuence'][0]
-            operation = arguments['operation'][0]
+            sequence = arguments['sequence'][0]
+            operation = arguments['calculation'][0]
 
 
             if operation == 'Info':
                 contents = su.info(sequence, operation)
             elif operation == 'Comp':
-                pass
+                contents = su.comp(sequence, operation)
             else:
-                pass
+                contents = su.rev(sequence, operation)
 
 
 

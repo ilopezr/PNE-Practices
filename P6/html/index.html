@@ -40,9 +40,10 @@
         Write a sequence: <input type="text" name="sequence">
             <br>
         Select operation:
-        <input type="radio" name="calculation" value="Info"> Info
-        <input type="radio" name="calculation" value="Comp"> Comp
-        <input type="radio" name="calculation" value="Rev"> Rev
+        {% for n in context.list_operations %}
+            <input type="radio" name="calculation" value="{{n}}"> {{n}}
+        {% endfor %}
+
             <br>
         <input type="submit" value="OPERATE!">
     </form>

@@ -56,21 +56,25 @@ def info(sequence, operation): #Esto es lo que se envía desde el server: conten
         return contents
 
     else:
-        print('The seq_dna is not correct. Please introduce another one.')
+        result = 'The result can not be calculated. Introduce a correct sequence. '
+        context = {'sequence': sequence, 'operation': operation, 'result': result}
+        contents = read_template_html_file('./html/operation.html').render(context=context)
+        return contents
 
-def comp(cs, argument):
-    print_colored('COMP', 'yellow')
-    print('Sequence:', argument)
-    response = Seq(argument).complement()
-    print(response)
-    cs.send(str(response).encode())
 
-def rev(cs, argument):
-    print_colored('REV', 'yellow')
-    print('Sequence:', argument)
-    response = Seq(argument).reverse()
-    print(response)
-    cs.send(str(response).encode())
+def comp(sequence, operation): #Esto es lo que se envía desde el server: contents = su.comp(sequence, operation)
+    result = Seq(sequence).complement()
+    context = {'sequence': sequence, 'operation': operation, 'result': result}
+    contents = read_template_html_file('./html/operation.html').render(context=context)
+    return contents
+
+def rev(sequence, operation): #Esto es lo que se envía desde el server: contents = su.rev(sequence, operation)
+
+    result = Seq(sequence).reverse()
+    context = {'sequence': sequence, 'operation': operation, 'result': result}
+    contents = read_template_html_file('./html/operation.html').render(context=context)
+    return contents
+
 
 def gene(seq_name): #CAMBIARLO
     PATH = './sequences/' + seq_name + '.txt'
