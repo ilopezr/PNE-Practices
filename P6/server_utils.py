@@ -63,10 +63,20 @@ def info(sequence, operation): #Esto es lo que se envía desde el server: conten
 
 
 def comp(sequence, operation): #Esto es lo que se envía desde el server: contents = su.comp(sequence, operation)
-    result = Seq(sequence).complement()
-    context = {'sequence': sequence, 'operation': operation, 'result': result}
-    contents = read_template_html_file('./html/operation.html').render(context=context)
-    return contents
+
+    correct_dna = Seq.is_valid_sequence_2(sequence)
+    if correct_dna:  # Same as :  if correct_dna == True:
+        result = Seq(sequence).complement()
+        context = {'sequence': sequence, 'operation': operation, 'result': result}
+        contents = read_template_html_file('./html/operation.html').render(context=context)
+        return contents
+
+    else:
+        result = 'The result can not be calculated. Introduce a correct sequence. '
+        context = {'sequence': sequence, 'operation': operation, 'result': result}
+        contents = read_template_html_file('./html/operation.html').render(context=context)
+        return contents
+
 
 def rev(sequence, operation): #Esto es lo que se envía desde el server: contents = su.rev(sequence, operation)
 

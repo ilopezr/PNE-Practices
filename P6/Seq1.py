@@ -31,7 +31,7 @@ class Seq:
         for i in bases:
             if i != 'A' and i != 'T' and i != 'C' and i != 'G':
                 return False
-            return True
+        return True
 
     def len(self):
         if self.strbases == Seq.NULL_SEQUENCE or self.strbases == Seq.INVALID_SEQUENCE:
