@@ -1,41 +1,46 @@
-"""class Dog:
- def walk(self):
-     return "*walking*"
- def speak(self):
-    return "Woof!"
-class JackRussellTerrier(Dog):
- def speak(self):
-    return "Arff!"
-bobo = JackRussellTerrier()
-print(bobo.walk()) #Aqui está llamando a una funcion de dentro de dog, pero como es fuera de la función, y walk no usa atributos que no tenga jackrusselterrier, funciona."""
+import socket
 
+# Configure the Server's IP and PORT
+PORT = 8081
+IP = "192.168.1.36"
+MAX_OPEN_REQUESTS = 5
 
+# Counting the number of connections
+number_con = 0
 
-"""class A:
-    def __init__(self, s= 'Welcome'):
-        self.s = s
+# create an INET, STREAMing socket
+serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+try:
+    serversocket.bind((IP, PORT))
+    # become a server socket
+    # MAX_OPEN_REQUESTS connect requests before refusing outside connections
+    serversocket.listen(MAX_OPEN_REQUESTS)
 
-    def print(self):
-        return self.s
+    while True:
+        # accept connections from outside
+        print("Waiting for connections at {}, {} ".format(IP, PORT))
+        (clientsocket, address) = serversocket.accept()
 
-a = A()
-print(a.print())"""
+        # Another connection!e
+        number_con += 1
 
+        # Print the conection number
+        print("CONNECTION: {}. From the IP: {}".format(number_con, address))
 
-"""class Grupos:
-    def __init__(self):
-        self.m = 'mecano'
-        self.a = 'alaska'
+        # Read the message from the client, if any
+        msg = clientsocket.recv(2048).decode("utf-8")
+        print("Message from client: {}".format(msg))
 
-    def duplicado(self):
-        return self.m + self.m
+        # Send the messag
+        message = "Hello from the teacher's server"
+        send_bytes = str.encode(message)
+        # We must write bytes, not a string
+        clientsocket.send(send_bytes)
+        clientsocket.close()
 
-class Mecano(Grupos):
+except socket.error:
+    print("Problems using port {}. Do you have permission?".format(PORT))
 
-    def __str__(self):
-        print(self.m)  #Para hacer una llamada, si hay que poner el super(), sin embargo, a la hora de imprimir
-                       #podemos hacer esto: A = Mecano()  print(A.duplicado())
-
-A = Mecano()
-A.__str__()"""
-
+except KeyboardInterrupt:
+    print("Server stopped by the user")
+    serversocket.close()
