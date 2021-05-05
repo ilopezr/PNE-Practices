@@ -102,7 +102,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             contents = su.read_template_html_file('./html/test.html').render()
 
         elif path_name == '/ping':
-            contents = su.read_template_html_file("./html/ping.html").render()#ERROR SOLUCIONARLO
+            contents = su.read_template_html_file("./html/ping.html").render()
 
 
         elif path_name == '/get':
