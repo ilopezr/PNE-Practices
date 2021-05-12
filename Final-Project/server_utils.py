@@ -131,6 +131,29 @@ def info_listSpecies(dict_information, limit): #context = su.info_listSpecies(di
     context = {'number_species' : number_species, 'limit': limit, 'list_species':list_species}
     return context
 
+def info_karyotype(dict_information):
+
+    #Tenemos que guardar en una lista los nombres de los cromosomas
+    #Los nombres de los cromosomas se almacenan en la key 'karyotype' de dict_information, en una lista de valores.
+
+    list_chromosomes = dict_information['karyotype']
+    context = {'list_chromosomes': list_chromosomes}
+    return context
+
+def info_chromoLength(dict_information, chromo):
+
+    length = dict_information['top_level_region'][int(chromo)]['length']
+    context = {'length': length}
+    return context
+
+
+
+
+
+
+
+
+
 
 
 

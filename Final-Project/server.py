@@ -66,7 +66,49 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             #Esta función se va a llamar def info_listSpecies():
 
             context = su.info_listSpecies(dict_information, limit)
-            contents = read_template_html_file("./html/listSpecies.html").render(contents=context)
+            contents = read_template_html_file("./html/listSpecies.html").render(context=context) #lo naranja siempre
+            # igual que el nombre que hay en la plantilla, y lo que hay detrás del igual, es la variable que le pasamos como argument
+
+        elif path_name == '/karyotype':
+
+            """Resource requested:  /karyotype
+            Parameters: {'specie': ['mouse']}"""
+            specie = arguments['specie'][0]
+
+            ENDPOINT = '/info/assembly/' + str(specie)
+
+            try: #Tenemos que controlar que la especie que introduce exista
+                dict_information = su.get_info(ENDPOINT)  #Extraer la información de la especie deseada
+
+                # Ahora tenemos que enviarle el contenido dict_information a la función que se encargue
+                # de sacar la informacion de ese diccionario para posteriormente enviarla al html correspondiente.
+                # Esta función se va a llamar def info_karyotype:
+                context = su.info_karyotype(dict_information) #Nos devuelve la lista de cromosomas, es decir el cariotipo
+                contents = read_template_html_file('./html/karyotype.html').render(context = context)
+
+            except KeyError:
+                contents = su.read_template_html_file("./html/error.html").render()
+
+        elif path_name == '/chromosomeLength':
+
+            """Resource requested:  /chromosomeLength
+            Parameters: {'specie': ['mouse'], 'chromo': ['18']}"""
+
+            specie = arguments['specie'][0]
+            chromo = arguments['chromo'][0]
+
+            #/info/assembly/homo_sapiens?content-type=application/json
+
+            ENDPOINT = '/info/assembly/' + str(specie)
+
+            try: #Tenemos que asegurarnos de que el cromosoma y la especie existan
+                dict_information = su.get_info(ENDPOINT)
+                context = su.info_chromoLength(dict_information, chromo)
+                contents = read_template_html_file('./html/chromosomeLength.html').render(context=context)
+
+            except KeyError:
+                contents = su.read_template_html_file("./html/error.html").render()
+
 
         else:
             contents = su.read_template_html_file("./html/error.html").render()
