@@ -108,7 +108,7 @@ def get_info(ENDPOINT): #Creamos una función que nos permita pasar json info a 
     dict_information = json.loads(information_decoded) #diccionario con la informacion
     return dict_information
 
-def info_listSpecies(dict_information, limit): #contents = su.info_listSpecies(dict_information, limit)
+def info_listSpecies(dict_information, limit): #context = su.info_listSpecies(dict_information, limit)
 
     #Necesitamos saber el número total de especies, el límite seleccionado, y el nombre de nuestras especies
 

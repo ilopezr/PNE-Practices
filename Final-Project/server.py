@@ -11,7 +11,7 @@ def read_html_file(filename):
     return content
 
 def read_template_html_file(filename):
-    content = pathlib.Path(filename).read_text()
+    content = jinja2.Template(pathlib.Path(filename).read_text())
     return content
 
 # Define the Server's port
@@ -46,10 +46,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         context = {}
 
         if path_name == '/': #ESTA VA A SER NUESTRA PÁGINA PRINCIPAL, Y LO QUE SE VA A VER ESTÁ DENTRO DE INDEX.HTML
-            #context['n_sequences'] = len(LIST_SEQUENCES) #creamos key y value para mandar esa informacion a INDEX-HTML, que la va a usar
-            #context['list_genes'] = LIST_GENES #creamos una nueva key y value, el valor sera una lista con los nombres de las secuencias de genes
-            #context['list_operations'] = LIST_OPERATIONS
-            contents = su.read_template_html_file('./html/index.html').render(contents=context)
+            contents = su.read_template_html_file('./html/index.html').render()
 
         elif path_name == '/listSpecies':
             ENDPOINT = '/info/species'
@@ -69,7 +66,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             #Esta función se va a llamar def info_listSpecies():
 
             context = su.info_listSpecies(dict_information, limit)
-            contents = read_template_html_file("./html/listSpecies.html").render(context=context)
+            contents = read_template_html_file("./html/listSpecies.html").render(contents=context)
 
         else:
             contents = su.read_template_html_file("./html/error.html").render()

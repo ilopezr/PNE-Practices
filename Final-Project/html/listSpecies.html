@@ -7,7 +7,7 @@
         <p>The total number os species in the ensembl is: {{context.number_species}}</p>
         <p>The limit you have selected is: {{context.limit}} </p>
         <p>The names of the species are: </p>
-        {% for n in {{context.list_species}} %}
+        {% for n in context.list_species %}
         <ul>
           <li type="disc">{{n}}</li>
         </ul>
