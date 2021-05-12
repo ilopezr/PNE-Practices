@@ -17,6 +17,17 @@ def read_template_html_file(filename):
 # Define the Server's port
 PORT = 8080
 
+genes_dict = {'FRAT1':'ENSG00000165879',
+              'ADA': 'ENSG00000196839',
+              'FXN':'ENSG00000165060',
+              'RNU6_269P':'ENSG00000212379',
+              'MIR633':'ENSG00000207552',
+              'TTTY4C':'ENSG00000226906',
+              'RBMY2YP':'ENSG00000227633',
+              'FGFR3':'ENSG00000068078',
+              'KDR':'ENSG00000128052',
+              'ANK2':'ENSG00000145362'}
+
 # -- This is for preventing the error: "Port already in use"
 socketserver.TCPServer.allow_reuse_address = True
 
@@ -50,34 +61,38 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
         elif path_name == '/listSpecies':
             ENDPOINT = '/info/species'
-            dict_information = su.get_info(ENDPOINT)
 
-            #Tenemos que controlar los límites, si user introduce un límite mayor del esperado, imprimimos toda la lista
-            #de especies, pero si introduce un número más pequeño de especies que las que hay en la lista, imprimimos sólo
-            #las que nos pide
+            try:
 
-            try: #Intentamos imprimir los diccionarios que el user pide  Parameters: {'limit': ['10']}
+                #Tenemos que controlar los límites, si user introduce un límite mayor del esperado, imprimimos toda la lista
+                #de especies, pero si introduce un número más pequeño de especies que las que hay en la lista, imprimimos sólo
+                #las que nos pide
+
+                #Intentamos imprimir los diccionarios que el user pide  Parameters: {'limit': ['10']}
+                dict_information = su.get_info(ENDPOINT)
                 limit = arguments['limit'][0] #Es una lista por tanto cogemos sólo el elemento en posición 0
-            except KeyError: #En el caso de que el límite fuera mayor del que nosotros tenemos o no hubieran introducido límite
-                limit = len(dict_information)
 
-            #Ahora tenemos que enviarle el contenido dict_information y el límite a la función que se encargue
-            #de sacar la informacion de ese diccionario para posteriormente enviarla al html correspondiente.
-            #Esta función se va a llamar def info_listSpecies():
+                if int(limit) > len(dict_information['species']):
+                    limit = len(dict_information['species'])
 
-            context = su.info_listSpecies(dict_information, limit)
-            contents = read_template_html_file("./html/listSpecies.html").render(context=context) #lo naranja siempre
-            # igual que el nombre que hay en la plantilla, y lo que hay detrás del igual, es la variable que le pasamos como argument
+                context = su.info_listSpecies(dict_information, limit)
+                contents = read_template_html_file("./html/listSpecies.html").render(context=context) #lo naranja siempre
+                # igual que el nombre que hay en la plantilla, y lo que hay detrás del igual, es la variable que le pasamos como argument
+
+            except ValueError:
+                contents = su.read_template_html_file("./html/error.html").render()
+            except KeyError:
+                contents = su.read_template_html_file("./html/error.html").render()
+
 
         elif path_name == '/karyotype':
 
             """Resource requested:  /karyotype
             Parameters: {'specie': ['mouse']}"""
-            specie = arguments['specie'][0]
-
-            ENDPOINT = '/info/assembly/' + str(specie)
 
             try: #Tenemos que controlar que la especie que introduce exista
+                specie = arguments['specie'][0]
+                ENDPOINT = '/info/assembly/' + str(specie)
                 dict_information = su.get_info(ENDPOINT)  #Extraer la información de la especie deseada
 
                 # Ahora tenemos que enviarle el contenido dict_information a la función que se encargue
@@ -94,17 +109,67 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             """Resource requested:  /chromosomeLength
             Parameters: {'specie': ['mouse'], 'chromo': ['18']}"""
 
-            specie = arguments['specie'][0]
-            chromo = arguments['chromo'][0]
-
-            #/info/assembly/homo_sapiens?content-type=application/json
-
-            ENDPOINT = '/info/assembly/' + str(specie)
-
             try: #Tenemos que asegurarnos de que el cromosoma y la especie existan
+                specie = arguments['specie'][0]
+                chromo = arguments['chromo'][0]
+
+                # /info/assembly/homo_sapiens?content-type=application/json
+
+                ENDPOINT = '/info/assembly/' + str(specie)
                 dict_information = su.get_info(ENDPOINT)
+
                 context = su.info_chromoLength(dict_information, chromo)
                 contents = read_template_html_file('./html/chromosomeLength.html').render(context=context)
+
+            except KeyError:
+                contents = su.read_template_html_file("./html/error.html").render()
+
+        elif path_name == '/geneSeq':
+            """Resource requested:  /geneSeq
+            Parameters: {'gene': ['FRAT1']}"""
+
+            try:
+                gene = arguments['gene'][0]
+                print('gene:', gene)
+                id = genes_dict[gene]
+                print(id)
+                ENDPOINT = '/sequence/id/' + id #"/sequence/id/" + id
+                dict_information = su.get_info(ENDPOINT) #Diccionario con la informacion que necesitamos
+                print(dict_information)
+                print('length', len(dict_information['seq']))
+
+                context = su.geneSeq(dict_information, gene)
+                contents = read_template_html_file("./html/geneSeq.html").render(context=context)
+
+            except KeyError:
+                contents = su.read_template_html_file("./html/error.html").render()
+
+        elif path_name == '/geneInfo':
+            try:
+                gene = arguments['gene'][0]
+                id = genes_dict[gene]
+                ENDPOINT = '/sequence/id/' + id  # "/sequence/id/" + id
+                dict_information = su.get_info(ENDPOINT)
+                print(dict_information)
+
+                context = su.geneInfo(dict_information, gene)
+                print(context)
+                contents = read_template_html_file("./html/geneInfo.html").render(context=context)
+
+            except KeyError:
+                contents = su.read_template_html_file("./html/error.html").render()
+
+        elif path_name == '/geneCalc':
+            try:
+                gene = arguments['gene'][0]
+                id = genes_dict[gene]
+                ENDPOINT = '/sequence/id/' + id  # "/sequence/id/" + id
+                dict_information = su.get_info(ENDPOINT)
+                print(dict_information)
+
+                context = su.geneCalc(dict_information, gene)
+                print(context)
+                contents = read_template_html_file("./html/geneCalc.html").render(context=context)
 
             except KeyError:
                 contents = su.read_template_html_file("./html/error.html").render()

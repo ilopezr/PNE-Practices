@@ -36,33 +36,8 @@ def get(list_sequences, seq_number):
     return contents
 
 
-def calculate_percentaje(number_repetitions, arg):
-    return round(number_repetitions * 100 / len(arg), 1)
 
 
-def info(sequence, operation): #Esto es lo que se envía desde el server: contents = su.info(sequence, operation)
-
-    correct_dna = Seq.is_valid_sequence_2(sequence)
-
-    if correct_dna:  # Same as :  if correct_dna == True:
-        argument_object = Seq(sequence)
-        a, g, c, t = argument_object.count_bases() # De esta manera solo se ejecuta el bucle una vez cuando hacemos luego el print
-        result = f""" Sequence: {sequence}
-        Total length: {len(sequence)} 
-        A: {a} ({calculate_percentaje(a, sequence)} %) 
-        C: {c} ({calculate_percentaje(c, sequence)} %) 
-        G: {g} ({calculate_percentaje(g, sequence)} %) 
-        T: {t} ({calculate_percentaje(t, sequence)} %)"""  #MANDAMOS EL CÓDIGO SÓLO UNA VEZ, PORQUE SI NO, ConnectionResetError: [WinError 10054]
-
-        context = {'sequence': sequence, 'operation': operation, 'result': result}
-        contents = read_template_html_file('./html/operation.html').render(context=context)
-        return contents
-
-    else:
-        result = 'The result can not be calculated. Introduce a correct sequence. '
-        context = {'sequence': sequence, 'operation': operation, 'result': result}
-        contents = read_template_html_file('./html/operation.html').render(context=context)
-        return contents
 
 
 def comp(sequence, operation): #Esto es lo que se envía desde el server: contents = su.comp(sequence, operation)
@@ -145,6 +120,55 @@ def info_chromoLength(dict_information, chromo):
     length = dict_information['top_level_region'][int(chromo)]['length']
     context = {'length': length}
     return context
+
+def geneSeq(dict_information, gene):
+    seq = dict_information['seq']
+    context = {'seq':seq , 'gene': gene}
+    return context
+
+def geneInfo(dict_information, gene):
+    length = len(dict_information['seq'])
+    id = dict_information['id']
+    desc = dict_information['desc'].split(':') #['chromosome', 'GRCh38', '10', '97319271', '97321915', '1']
+    chromosome_name = desc[1]
+    end = desc[4]
+    start = desc[3]
+    context = {'start': start, 'end': end, 'length':length , 'id': id, 'chromosome_name': chromosome_name}
+    return context
+
+
+def calculate_percentaje(number_repetitions, arg):
+    return round(number_repetitions * 100 / len(arg), 1)
+
+
+def geneCalc(dict_information, gene):
+
+    #Lo primero de todo_ es sacar la secuencia
+    sequence = dict_information['seq']
+
+    #Una vez tenemos la secuencia...
+
+    correct_dna = Seq.is_valid_sequence_2(sequence)
+
+    if correct_dna:  # Same as :  if correct_dna == True:
+        argument_object = Seq(sequence)
+        a, g, c, t = argument_object.count_bases() # De esta manera solo se ejecuta el bucle una vez cuando hacemos luego el print
+        percent = f"""
+        A: {a} ({calculate_percentaje(a, sequence)} %) 
+        C: {c} ({calculate_percentaje(c, sequence)} %) 
+        G: {g} ({calculate_percentaje(g, sequence)} %) 
+        T: {t} ({calculate_percentaje(t, sequence)} %)"""  #MANDAMOS EL CÓDIGO SÓLO UNA VEZ, PORQUE SI NO, ConnectionResetError: [WinError 10054]
+
+        length = len(sequence)
+        context = {'percent': percent, 'length': length}
+        return context
+
+    else:
+        percent = 'The percentages can not be calculated. Introduce a correct sequence. '
+        length = len(sequence)
+        context = {'percent': percent, 'length': length}
+        return context
+
 
 
 
