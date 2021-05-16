@@ -50,6 +50,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
         print("Resource requested: ", path_name)
         print("Parameters:", arguments)
+        print(arguments)
 
         # IN this simple server version, We are NOT processing the client's request
 
@@ -104,7 +105,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             except KeyError:
                 contents = su.read_template_html_file("./html/error.html").render()
 
-        elif path_name == '/chromosomeLength':
+        elif path_name == '/chromosomeLength': #CREO QUE NO VA BIEN !!
 
             """Resource requested:  /chromosomeLength
             Parameters: {'specie': ['mouse'], 'chromo': ['18']}"""
