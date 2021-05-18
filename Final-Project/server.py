@@ -51,7 +51,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
         print("Resource requested: ", path_name)
         print("Parameters:", arguments)
-        print(arguments)
+        print(arguments['json'])
 
         # IN this simple server version, We are NOT processing the client's request
 
@@ -78,7 +78,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 if int(limit) > len(dict_information['species']):
                     limit = len(dict_information['species'])
 
-                if arguments['json'] == 1:
+                if arguments['json'] == ['1']:
                     context = su.info_listSpecies(dict_information, limit)
                     contents = json.dumps(context)
                     content_type = 'application/json'
