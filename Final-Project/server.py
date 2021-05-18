@@ -4,6 +4,7 @@ import pathlib
 from urllib.parse import urlparse, parse_qs
 import server_utils as su
 import jinja2
+import json
 
 
 def read_html_file(filename):
@@ -63,6 +64,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         elif path_name == '/listSpecies':
             ENDPOINT = '/info/species'
 
+
             try:
 
                 #Tenemos que controlar los límites, si user introduce un límite mayor del esperado, imprimimos toda la lista
@@ -71,14 +73,22 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
                 #Intentamos imprimir los diccionarios que el user pide  Parameters: {'limit': ['10']}
                 dict_information = su.get_info(ENDPOINT)
-                limit = arguments['limit'][0] #Es una lista por tanto cogemos sólo el elemento en posición 0
 
+                limit = arguments['limit'][0] #Es una lista por tanto cogemos sólo el elemento en posición 0
                 if int(limit) > len(dict_information['species']):
                     limit = len(dict_information['species'])
 
-                context = su.info_listSpecies(dict_information, limit)
-                contents = read_template_html_file("./html/listSpecies.html").render(context=context) #lo naranja siempre
-                # igual que el nombre que hay en la plantilla, y lo que hay detrás del igual, es la variable que le pasamos como argument
+                if arguments['json'] == 1:
+                    context = su.info_listSpecies(dict_information, limit)
+                    contents = json.dumps(context)
+                    content_type = 'application/json'
+                    error_code = 200
+
+                else:
+
+                    context = su.info_listSpecies(dict_information, limit)
+                    contents = read_template_html_file("./html/listSpecies.html").render(context=context) #lo naranja siempre
+                    # igual que el nombre que hay en la plantilla, y lo que hay detrás del igual, es la variable que le pasamos como argument
 
             except ValueError:
                 contents = su.read_template_html_file("./html/error.html").render()
@@ -184,7 +194,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         self.send_response(200)  # -- Status line: OK!
 
         # Define the content-type header:
-        self.send_header('Content-Type', 'text/html') #ESPECIFICAR EL CONTENIDO QUE ESTAMOS MANDANDO
+        self.send_header('Content-Type', content_type) #ESPECIFICAR EL CONTENIDO QUE ESTAMOS MANDANDO
         self.send_header('Content-Length',  len(contents.encode()))
 
         # The header is finished
