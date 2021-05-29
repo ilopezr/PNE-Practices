@@ -66,7 +66,6 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             ENDPOINT = '/info/species'
 
             try:
-
                 #Tenemos que controlar los límites, si user introduce un límite mayor del esperado, imprimimos toda la lista
                 #de especies, pero si introduce un número más pequeño de especies que las que hay en la lista, imprimimos sólo
                 #las que nos pide
@@ -108,7 +107,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
                 if 'json' in arguments:
                     if arguments['json'] == ['1']:
-                        context = su.info_listSpecies(dict_information, specie)
+                        context = su.info_karyotype(dict_information)
                         contents = json.dumps(context)
                         content_type = 'application/json'
                         error_code = 200
@@ -136,8 +135,16 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 ENDPOINT = '/info/assembly/' + str(specie)
                 dict_information = su.get_info(ENDPOINT)
 
-                context = su.info_chromoLength(dict_information, chromo)
-                contents = read_template_html_file('./html/chromosomeLength.html').render(context=context)
+                if 'json' in arguments:
+                    if arguments['json'] == ['1']:
+                        context = su.info_chromoLength(dict_information, chromo)
+                        contents = json.dumps(context)
+                        content_type = 'application/json'
+                        error_code = 200
+
+                else:
+                    context = su.info_chromoLength(dict_information, chromo)
+                    contents = read_template_html_file('./html/chromosomeLength.html').render(context=context)
 
             except KeyError:
                 contents = su.read_template_html_file("./html/error.html").render()
@@ -156,8 +163,15 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 print(dict_information)
                 print('length', len(dict_information['seq']))
 
-                context = su.geneSeq(dict_information, gene)
-                contents = read_template_html_file("./html/geneSeq.html").render(context=context)
+                if 'json' in arguments:
+                    if arguments['json'] == ['1']:
+                        context = su.geneSeq(dict_information, gene)
+                        contents = json.dumps(context)
+                        content_type = 'application/json'
+                        error_code = 200
+                else:
+                    context = su.geneSeq(dict_information, gene)
+                    contents = read_template_html_file("./html/geneSeq.html").render(context=context)
 
             except KeyError:
                 contents = su.read_template_html_file("./html/error.html").render()
@@ -170,9 +184,16 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 dict_information = su.get_info(ENDPOINT)
                 print(dict_information)
 
-                context = su.geneInfo(dict_information, gene)
-                print(context)
-                contents = read_template_html_file("./html/geneInfo.html").render(context=context)
+                if 'json' in arguments:
+                    if arguments['json'] == ['1']:
+                        context = su.geneInfo(dict_information, gene)
+                        contents = json.dumps(context)
+                        content_type = 'application/json'
+                        error_code = 200
+                else:
+                    context = su.geneInfo(dict_information, gene)
+                    print(context)
+                    contents = read_template_html_file("./html/geneInfo.html").render(context=context)
 
             except KeyError:
                 contents = su.read_template_html_file("./html/error.html").render()
@@ -185,9 +206,16 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 dict_information = su.get_info(ENDPOINT)
                 print(dict_information)
 
-                context = su.geneCalc(dict_information, gene)
-                print(context)
-                contents = read_template_html_file("./html/geneCalc.html").render(context=context)
+                if 'json' in arguments:
+                    if arguments['json'] == ['1']:
+                        context = su.geneCalc(dict_information, gene)
+                        contents = json.dumps(context)
+                        content_type = 'application/json'
+                        error_code = 200
+                else:
+                    context = su.geneCalc(dict_information, gene)
+                    print(context)
+                    contents = read_template_html_file("./html/geneCalc.html").render(context=context)
 
             except KeyError:
                 contents = su.read_template_html_file("./html/error.html").render()
