@@ -51,12 +51,13 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
         print("Resource requested: ", path_name)
         print("Parameters:", arguments)
-        print(arguments['json'])
+        #print(arguments['json'])
 
         # IN this simple server version, We are NOT processing the client's request
 
         #Contex is a dict that we create with the values we are going to pass to any file.html
         context = {}
+        content_type = 'text/html'
 
         if path_name == '/': #ESTA VA A SER NUESTRA PÁGINA PRINCIPAL, Y LO QUE SE VA A VER ESTÁ DENTRO DE INDEX.HTML
             contents = su.read_template_html_file('./html/index.html').render()
