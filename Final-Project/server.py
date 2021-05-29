@@ -65,7 +65,6 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         elif path_name == '/listSpecies':
             ENDPOINT = '/info/species'
 
-
             try:
 
                 #Tenemos que controlar los límites, si user introduce un límite mayor del esperado, imprimimos toda la lista
@@ -79,14 +78,14 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 if int(limit) > len(dict_information['species']):
                     limit = len(dict_information['species'])
 
-                if arguments['json'] == ['1']:
-                    context = su.info_listSpecies(dict_information, limit)
-                    contents = json.dumps(context)
-                    content_type = 'application/json'
-                    error_code = 200
+                if 'json' in arguments:
+                    if arguments['json'] == ['1']:
+                        context = su.info_listSpecies(dict_information, limit)
+                        contents = json.dumps(context)
+                        content_type = 'application/json'
+                        error_code = 200
 
                 else:
-
                     context = su.info_listSpecies(dict_information, limit)
                     contents = read_template_html_file("./html/listSpecies.html").render(context=context) #lo naranja siempre
                     # igual que el nombre que hay en la plantilla, y lo que hay detrás del igual, es la variable que le pasamos como argument
@@ -104,14 +103,22 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
             try: #Tenemos que controlar que la especie que introduce exista
                 specie = arguments['specie'][0]
+                print('Specie', specie)
                 ENDPOINT = '/info/assembly/' + str(specie)
                 dict_information = su.get_info(ENDPOINT)  #Extraer la información de la especie deseada
 
-                # Ahora tenemos que enviarle el contenido dict_information a la función que se encargue
-                # de sacar la informacion de ese diccionario para posteriormente enviarla al html correspondiente.
-                # Esta función se va a llamar def info_karyotype:
-                context = su.info_karyotype(dict_information) #Nos devuelve la lista de cromosomas, es decir el cariotipo
-                contents = read_template_html_file('./html/karyotype.html').render(context = context)
+                if 'json' in arguments:
+                    if arguments['json'] == ['1']:
+                        context = su.info_listSpecies(dict_information, specie)
+                        contents = json.dumps(context)
+                        content_type = 'application/json'
+                        error_code = 200
+                else:
+                    # Ahora tenemos que enviarle el contenido dict_information a la función que se encargue
+                    # de sacar la informacion de ese diccionario para posteriormente enviarla al html correspondiente.
+                    # Esta función se va a llamar def info_karyotype:
+                    context = su.info_karyotype(dict_information) #Nos devuelve la lista de cromosomas, es decir el cariotipo
+                    contents = read_template_html_file('./html/karyotype.html').render(context = context)
 
             except KeyError:
                 contents = su.read_template_html_file("./html/error.html").render()
