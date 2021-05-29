@@ -103,7 +103,6 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
             try: #Tenemos que controlar que la especie que introduce exista
                 specie = arguments['specie'][0]
-                print('Specie', specie)
                 ENDPOINT = '/info/assembly/' + str(specie)
                 dict_information = su.get_info(ENDPOINT)  #Extraer la información de la especie deseada
 
