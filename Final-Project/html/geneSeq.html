@@ -6,8 +6,10 @@
       <body style="background-color: lightblue;">
         <h1>Sequence</h1>
         <p>The sequence for gene {{context.gene}} is:
-          <br>
-          {{context.seq}} </p>
+              <textarea id="gene_content" name = "gene_bases" rows="5", cols="50">
+              {{context.seq}}
+              </textarea>
+          </p>
         <a href="/">Main Page</a>
       </body>
     </html>

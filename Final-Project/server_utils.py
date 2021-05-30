@@ -35,11 +35,6 @@ def get(list_sequences, seq_number):
     contents = read_template_html_file('./html/get.html').render(context=context)
     return contents
 
-
-
-
-
-
 def comp(sequence, operation): #Esto es lo que se envía desde el server: contents = su.comp(sequence, operation)
 
     result = Seq(sequence).complement()

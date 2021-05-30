@@ -1,0 +1,848 @@
+Test report
+====================
+
+---> listSpecies endpoint
+
+* TEST 1:
+
+* Input:
+
+http://127.0.0.1:8080/listSpecies?limit=10
+
+* output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+      </head>
+      <body style="background-color: lightblue;">
+        <p>The total number os species in the ensembl is: 310</p>
+        <p>The limit you have selected is: 10 </p>
+        <p>The names of the species are: </p>
+        Little spotted kiwi
+        Indian glassy fish
+        Blue tit
+        Narwhal
+        American beaver
+        Lumpfish
+        Chinese hamster CHOK1GS
+        Channel bull blenny
+        Golden Hamster
+        Wild yak
+        <p></p>
+        <a href="/">Main Page</a>
+      </body>
+    </html>
+
+* TEST 2:
+
+* Input:
+http://127.0.0.1:8080/listSpecies?limit=
+
+*Output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+      </head>
+      <body style="background-color: lightblue;">
+        <p>The total number os species in the ensembl is: 310</p>
+        <p>The limit you have selected is: 310 </p>
+        <p>The names of the species are: </p>
+        Tarsier
+        Meerkat
+        Pig - Bamei
+        Swainson's thrush
+        Reedfish
+        Chilean tinamou
+        Algerian mouse
+        Zebrafish
+        Paramormyrops kingsleyae
+        Electric eel
+        Elephant shark
+        Tuatara
+        Japanese quail
+        Japanese medaka HdrR
+        Bushbaby
+        Shortfin molly
+        Chinese hamster PICR
+        Blue whale
+        Chacoan peccary
+        Microbat
+        Jewelled blenny
+        American black bear
+        Eastern buzzard
+        Gelada
+        Greater amberjack
+        Dog
+        Mangrove rivulus
+        Damara mole rat
+        Common carp huanghe
+        Gouldian finch
+        Hybrid - Bos Taurus
+        Cow
+        Ugandan red Colobus
+        Tiger
+        Golden-line barbel
+        Periophthalmus magnuspinnatus
+        Spiny chromis
+        Eastern brown snake
+        Muscovy Duck (domestic type)
+        Vervet-AGM
+        Pig - Pietrain
+        Leopard
+        Komodo dragon
+        Silver-eye
+        Mouse PWK/PhJ
+        Ma's night monkey
+        Pike-perch
+        Rufous-capped babbler
+        Kangaroo rat
+        Pig
+        Monterrey platyfish
+        Sperm whale
+        Channel catfish
+        Superb fairywren
+        Pig - Rongchang
+        Tasmanian devil
+        Mainland tiger snake
+        Chimpanzee
+        Chinese hamster CHOK1GS
+        Turbot
+        Great spotted kiwi
+        Common carp hebao red
+        Japanese medaka HSOK
+        Bicolor damselfish
+        Elephant
+        Eastern spot-billed duck
+        Mouse AKR/J
+        Common wombat
+        California sea lion
+        Barramundi perch
+        Yellow-billed parrot
+        Caenorhabditis elegans
+        Blunt-snouted clingfish
+        Mummichog
+        Coquerel's sifaka
+        Makobe Island cichlid
+        Lesser hedgehog tenrec
+        Polar bear
+        Mouse FVB/NJ
+        Greater bamboo lemur
+        Spoon-billed sandpiper
+        C.savignyi
+        Stickleback
+        Daurian ground squirrel
+        Sailfin molly
+        Climbing perch
+        Orangutan
+        Golden pheasant
+        Abingdon island giant tortoise
+        Common snapping turtle
+        Chinese medaka
+        Guinea Pig
+        Human
+        Lyretail cichlid
+        Crab-eating macaque
+        Siberian musk deer
+        Golden snub-nosed monkey
+        Goodes thornscrub tortoise
+        Turkey
+        Mouse WSB/EiJ
+        Eurasian red squirrel
+        Black snub-nosed monkey
+        Common carp german mirror
+        Drosophila melanogaster
+        Atlantic salmon
+        Dog - Basenji
+        Arabian camel
+        Small tree finch
+        Horse
+        Wallaby
+        Collared flycatcher
+        Pig - Hampshire
+        Hyrax
+        Capuchin
+        Gibbon
+        Pachon cavefish
+        Olive baboon
+        White-throated sparrow
+        Guppy
+        Platypus
+        Round goby
+        Huchen
+        Beluga whale
+        West African mud turtle
+        Zig-zag eel
+        Denticle herring
+        Coelacanth
+        Indian glassy fish
+        Goat (black bengal)
+        Golden Hamster
+        Pig - Largewhite
+        Blue-ringed sea krait
+        Mouse NOD/ShiLtJ
+        Emu
+        Mallard
+        Chinese softshell turtle
+        Great Tit
+        Ballan wrasse
+        Armadillo
+        Chinook salmon
+        Narwhal
+        Mouse 129S1/SvImJ
+        Macaque
+        Green anole
+        Atlantic cod
+        Vaquita
+        Sloth
+        Marmoset
+        Horned golden-line barbel
+        Oriental scops-owl
+        Tiger tail seahorse
+        Angola colobus
+        Dark-eyed junco
+        Leishan spiny toad
+        Tetraodon
+        Atlantic herring
+        Megabat
+        Wild yak
+        Canada lynx
+        Agassiz's desert tortoise
+        Indian peafowl
+        Naked mole-rat male
+        Lamprey
+        Dingo
+        Argentine black and white tegu
+        Brazilian guinea pig
+        Gilthead seabream
+        Zebra mbuna
+        C.intestinalis
+        Squirrel
+        Yarkand deer
+        Indian cobra
+        Ferret
+        Saccharomyces cerevisiae
+        Asian bonytongue
+        Greater horseshoe bat
+        Dolphin
+        Golden-collared manakin
+        Duck
+        Pig - Tibetan
+        Tongue sole
+        Alpaca
+        Orbiculate cardinalfish
+        Goat
+        Chinese hamster CriGri
+        Common carp
+        Opossum
+        Pig - Wuzhishan
+        Javanese ricefish
+        Budgerigar
+        Lesser Egyptian jerboa
+        Red fox
+        Pink-footed goose
+        Platyfish
+        Mouse A/J
+        Large yellow croaker
+        Channel bull blenny
+        Dog - Great Dane
+        Japanese medaka HNI
+        Pig - Berkshire
+        Giant panda
+        American bison
+        Mexican tetra
+        Kakapo
+        Swamp eel
+        Mouse BALB/cJ
+        Sheep (texel)
+        Tropical clawed frog
+        Sheep
+        Ocean sunfish
+        Three-toed box turtle
+        Spotted gar
+        Common canary
+        Sooty mangabey
+        Degu
+        Brown trout
+        Okarito brown kiwi
+        Zebra finch
+        Tree Shrew
+        Arctic ground squirrel
+        Midas cichlid
+        Hagfish
+        Coho salmon
+        Little spotted kiwi
+        Common wall lizard
+        Mouse NZO/HlLtJ
+        Mouse C57BL/6NJ
+        Gorilla
+        Mouse Lemur
+        Pig USMARC
+        Central bearded dragon
+        Australian saltwater crocodile
+        Yellowtail amberjack
+        Hedgehog
+        Blue tilapia
+        Asiatic black bear
+        American mink
+        Pika
+        Live sharksucker
+        Hybrid - Bos Indicus
+        Amazon molly
+        Orange clownfish
+        African ostrich
+        Medium ground-finch
+        Bolivian squirrel monkey
+        Western mosquitofish
+        Helmeted guineafowl
+        Mouse CBA/J
+        Blue tit
+        Sheepshead minnow
+        Alpine marmot
+        Siamese fighting fish
+        Goldfish
+        Bonobo
+        Rabbit
+        Mouse DBA/2J
+        Cat
+        Blue-crowned manakin
+        Mouse
+        Nile tilapia
+        American beaver
+        Donkey
+        Burrowing owl
+        Steppe mouse
+        Naked mole-rat female
+        Rainbow trout
+        Turquoise killifish
+        Mouse C3H/HeJ
+        Common kestrel
+        Indian medaka
+        Lion
+        Eurasian eagle-owl
+        Mouse LP/J
+        Long-tailed chinchilla
+        Pig - Jinhua
+        Northern pike
+        Mouse CAST/EiJ
+        Pig - Landrace
+        Burton's mouthbrooder
+        European seabass
+        New Caledonian crow
+        Pig - Meishan
+        Pig-tailed macaque
+        Chicken
+        Ring-necked pheasant
+        Prairie vole
+        Clown anemonefish
+        Eastern happy
+        Pinecone soldierfish
+        Red-bellied piranha
+        Fugu
+        Koala
+        Lumpfish
+        Drill
+        Domestic yak
+        Rat
+        Northern American deer mouse
+        Shrew mouse
+        Ryukyu mouse
+        Ruff
+        Eurasian sparrowhawk
+        Northern spotted owl
+        Bengalese finch
+        Shrew
+        Upper Galilee mountains blind mole rat
+        Blind barbel
+        Swan goose
+        Mongolian gerbil
+        Golden eagle
+        Painted turtle
+        <p></p>
+        <a href="/">Main Page</a>
+      </body>
+    </html>
+
+*TEST 3:
+
+*Input: http://127.0.0.1:8080/listSpecies?limit=98573987987
+
+*Output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+      </head>
+      <body style="background-color: lightblue;">
+        <p>The total number os species in the ensembl is: 310</p>
+        <p>The limit you have selected is: 310 </p>
+        <p>The names of the species are: </p>
+        Tarsier
+        Meerkat
+        Pig - Bamei
+        Swainson's thrush
+        Reedfish
+        Chilean tinamou
+        Algerian mouse
+        Zebrafish
+        Paramormyrops kingsleyae
+        Electric eel
+        Elephant shark
+        Tuatara
+        Japanese quail
+        Japanese medaka HdrR
+        Bushbaby
+        Shortfin molly
+        Chinese hamster PICR
+        Blue whale
+        Chacoan peccary
+        Microbat
+        Jewelled blenny
+        American black bear
+        Eastern buzzard
+        Gelada
+        Greater amberjack
+        Dog
+        Mangrove rivulus
+        Damara mole rat
+        Common carp huanghe
+        Gouldian finch
+        Hybrid - Bos Taurus
+        Cow
+        Ugandan red Colobus
+        Tiger
+        Golden-line barbel
+        Periophthalmus magnuspinnatus
+        Spiny chromis
+        Eastern brown snake
+        Muscovy Duck (domestic type)
+        Vervet-AGM
+        Pig - Pietrain
+        Leopard
+        Komodo dragon
+        Silver-eye
+        Mouse PWK/PhJ
+        Ma's night monkey
+        Pike-perch
+        Rufous-capped babbler
+        Kangaroo rat
+        Pig
+        Monterrey platyfish
+        Sperm whale
+        Channel catfish
+        Superb fairywren
+        Pig - Rongchang
+        Tasmanian devil
+        Mainland tiger snake
+        Chimpanzee
+        Chinese hamster CHOK1GS
+        Turbot
+        Great spotted kiwi
+        Common carp hebao red
+        Japanese medaka HSOK
+        Bicolor damselfish
+        Elephant
+        Eastern spot-billed duck
+        Mouse AKR/J
+        Common wombat
+        California sea lion
+        Barramundi perch
+        Yellow-billed parrot
+        Caenorhabditis elegans
+        Blunt-snouted clingfish
+        Mummichog
+        Coquerel's sifaka
+        Makobe Island cichlid
+        Lesser hedgehog tenrec
+        Polar bear
+        Mouse FVB/NJ
+        Greater bamboo lemur
+        Spoon-billed sandpiper
+        C.savignyi
+        Stickleback
+        Daurian ground squirrel
+        Sailfin molly
+        Climbing perch
+        Orangutan
+        Golden pheasant
+        Abingdon island giant tortoise
+        Common snapping turtle
+        Chinese medaka
+        Guinea Pig
+        Human
+        Lyretail cichlid
+        Crab-eating macaque
+        Siberian musk deer
+        Golden snub-nosed monkey
+        Goodes thornscrub tortoise
+        Turkey
+        Mouse WSB/EiJ
+        Eurasian red squirrel
+        Black snub-nosed monkey
+        Common carp german mirror
+        Drosophila melanogaster
+        Atlantic salmon
+        Dog - Basenji
+        Arabian camel
+        Small tree finch
+        Horse
+        Wallaby
+        Collared flycatcher
+        Pig - Hampshire
+        Hyrax
+        Capuchin
+        Gibbon
+        Pachon cavefish
+        Olive baboon
+        White-throated sparrow
+        Guppy
+        Platypus
+        Round goby
+        Huchen
+        Beluga whale
+        West African mud turtle
+        Zig-zag eel
+        Denticle herring
+        Coelacanth
+        Indian glassy fish
+        Goat (black bengal)
+        Golden Hamster
+        Pig - Largewhite
+        Blue-ringed sea krait
+        Mouse NOD/ShiLtJ
+        Emu
+        Mallard
+        Chinese softshell turtle
+        Great Tit
+        Ballan wrasse
+        Armadillo
+        Chinook salmon
+        Narwhal
+        Mouse 129S1/SvImJ
+        Macaque
+        Green anole
+        Atlantic cod
+        Vaquita
+        Sloth
+        Marmoset
+        Horned golden-line barbel
+        Oriental scops-owl
+        Tiger tail seahorse
+        Angola colobus
+        Dark-eyed junco
+        Leishan spiny toad
+        Tetraodon
+        Atlantic herring
+        Megabat
+        Wild yak
+        Canada lynx
+        Agassiz's desert tortoise
+        Indian peafowl
+        Naked mole-rat male
+        Lamprey
+        Dingo
+        Argentine black and white tegu
+        Brazilian guinea pig
+        Gilthead seabream
+        Zebra mbuna
+        C.intestinalis
+        Squirrel
+        Yarkand deer
+        Indian cobra
+        Ferret
+        Saccharomyces cerevisiae
+        Asian bonytongue
+        Greater horseshoe bat
+        Dolphin
+        Golden-collared manakin
+        Duck
+        Pig - Tibetan
+        Tongue sole
+        Alpaca
+        Orbiculate cardinalfish
+        Goat
+        Chinese hamster CriGri
+        Common carp
+        Opossum
+        Pig - Wuzhishan
+        Javanese ricefish
+        Budgerigar
+        Lesser Egyptian jerboa
+        Red fox
+        Pink-footed goose
+        Platyfish
+        Mouse A/J
+        Large yellow croaker
+        Channel bull blenny
+        Dog - Great Dane
+        Japanese medaka HNI
+        Pig - Berkshire
+        Giant panda
+        American bison
+        Mexican tetra
+        Kakapo
+        Swamp eel
+        Mouse BALB/cJ
+        Sheep (texel)
+        Tropical clawed frog
+        Sheep
+        Ocean sunfish
+        Three-toed box turtle
+        Spotted gar
+        Common canary
+        Sooty mangabey
+        Degu
+        Brown trout
+        Okarito brown kiwi
+        Zebra finch
+        Tree Shrew
+        Arctic ground squirrel
+        Midas cichlid
+        Hagfish
+        Coho salmon
+        Little spotted kiwi
+        Common wall lizard
+        Mouse NZO/HlLtJ
+        Mouse C57BL/6NJ
+        Gorilla
+        Mouse Lemur
+        Pig USMARC
+        Central bearded dragon
+        Australian saltwater crocodile
+        Yellowtail amberjack
+        Hedgehog
+        Blue tilapia
+        Asiatic black bear
+        American mink
+        Pika
+        Live sharksucker
+        Hybrid - Bos Indicus
+        Amazon molly
+        Orange clownfish
+        African ostrich
+        Medium ground-finch
+        Bolivian squirrel monkey
+        Western mosquitofish
+        Helmeted guineafowl
+        Mouse CBA/J
+        Blue tit
+        Sheepshead minnow
+        Alpine marmot
+        Siamese fighting fish
+        Goldfish
+        Bonobo
+        Rabbit
+        Mouse DBA/2J
+        Cat
+        Blue-crowned manakin
+        Mouse
+        Nile tilapia
+        American beaver
+        Donkey
+        Burrowing owl
+        Steppe mouse
+        Naked mole-rat female
+        Rainbow trout
+        Turquoise killifish
+        Mouse C3H/HeJ
+        Common kestrel
+        Indian medaka
+        Lion
+        Eurasian eagle-owl
+        Mouse LP/J
+        Long-tailed chinchilla
+        Pig - Jinhua
+        Northern pike
+        Mouse CAST/EiJ
+        Pig - Landrace
+        Burton's mouthbrooder
+        European seabass
+        New Caledonian crow
+        Pig - Meishan
+        Pig-tailed macaque
+        Chicken
+        Ring-necked pheasant
+        Prairie vole
+        Clown anemonefish
+        Eastern happy
+        Pinecone soldierfish
+        Red-bellied piranha
+        Fugu
+        Koala
+        Lumpfish
+        Drill
+        Domestic yak
+        Rat
+        Northern American deer mouse
+        Shrew mouse
+        Ryukyu mouse
+        Ruff
+        Eurasian sparrowhawk
+        Northern spotted owl
+        Bengalese finch
+        Shrew
+        Upper Galilee mountains blind mole rat
+        Blind barbel
+        Swan goose
+        Mongolian gerbil
+        Golden eagle
+        Painted turtle
+        <p></p>
+        <a href="/">Main Page</a>
+      </body>
+    </html>
+
+---> karyotype endpoint
+
+* TEST 1:
+
+* Input:
+http://127.0.0.1:8080/karyotype?specie=Drosophila_melanogaster
+
+*Output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+      </head>
+      <body style="background-color: lightblue;">
+        <p>The names of the chromosomes are: </p>
+        2L
+        2R
+        3L
+        3R
+        4
+        X
+        Y
+        mitochondrion_genome
+        <p></p>
+        <a href="/">Main Page</a>
+      </body>
+    </html>
+
+* TEST 1:
+
+* Input:
+http://127.0.0.1:8080/karyotype?specie=Drosophila_melanogaster
+
+*Output:
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+      </head>
+      <body style="background-color: lightblue;">
+        <p>The names of the chromosomes are: </p>
+        2L
+        2R
+        3L
+        3R
+        4
+        X
+        Y
+        mitochondrion_genome
+        <p></p>
+        <a href="/">Main Page</a>
+      </body>
+    </html>
+
+ *TEST 2:
+
+ *Input
+ http://127.0.0.1:8080/karyotype?specie=jdjdjdj
+
+ *Output
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>Bases server</title>
+      </head>
+      <body style="background-color: red;">
+        <h1>ERROR</h1>
+        <p>Welcome to the DATA ERROR server</p>
+        <p>If you are here is because the data you have entered does not exist in this ensembl</p>
+        <p>Sorry!!!</p>
+        <p><a href="/">Main Page</a>
+
+      </body>
+    </html>
+
+--->  endpoint chromosomeLength
+
+* TEST 1:
+
+* Input:
+http://127.0.0.1:8080/chromosomeLength?specie=mouse&chromo=18
+
+*Output:
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+      </head>
+      <body style="background-color: lightblue;">
+        <p>The length of the chromosome is: 24685</p>
+        <a href="/">Main Page</a>
+      </body>
+    </html>
+
+* TEST 2:
+
+* Input:
+http://127.0.0.1:8080/chromosomeLength?specie=mouse&chromo=8375697
+
+*Output:
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>Bases server</title>
+      </head>
+      <body style="background-color: red;">
+        <h1>ERROR</h1>
+        <p>Welcome to the DATA ERROR server</p>
+        <p>If you are here is because the data you have entered does not exist in this ensembl</p>
+        <p>Sorry!!!</p>
+        <p><a href="/">Main Page</a>
+
+      </body>
+    </html>
+
+*TEST 3:
+
+*Input:
+http://127.0.0.1:8080/chromosomeLength?specie=jdjdjdj&chromo=8375697
+
+*Output:
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>Bases server</title>
+      </head>
+      <body style="background-color: red;">
+        <h1>ERROR</h1>
+        <p>Welcome to the DATA ERROR server</p>
+        <p>If you are here is because the data you have entered does not exist in this ensembl</p>
+        <p>Sorry!!!</p>
+        <p><a href="/">Main Page</a>
+
+      </body>
+    </html>
+
+
+
+
+
+
+
+
+

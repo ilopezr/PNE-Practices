@@ -80,7 +80,9 @@ def rev(sequence, operation): #Esto es lo que se envía desde el server: content
 
 def gene(seq_name): #CAMBIARLO
     PATH = './sequences/' + seq_name + '.txt'
+    print(PATH)
     s1 = Seq()
+    print(s1)
     s1.seq_read_fasta(PATH)
     context = {'gene_name': seq_name, 'gene_contents': s1.strbases}
     contents = read_template_html_file('./html/gene.html').render(context=context)

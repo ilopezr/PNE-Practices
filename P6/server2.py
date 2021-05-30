@@ -19,7 +19,7 @@ PORT = 8080
 
 LIST_SEQUENCES  = ['AAACCCTTTT', 'GGGCCCTTT', 'AGTAGT', 'CTGCTG', 'ATATATA']
 
-LIST_GENES = ['ADA', 'FRAT1', 'FXN', 'RNU269P', 'U5']
+LIST_GENES = ['ADA', 'FRAT1', 'FXN', 'RNU6_269P', 'U5']
 
 LIST_OPERATIONS = ['Info', 'Comp', 'Rev']
 
@@ -135,27 +135,30 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
         elif path_name == '/gene':
             gene = arguments['gene'][0]
+            print('gene:', gene)
             contents = su.gene(gene)
 
         elif path_name == '/operation':
 
-            """ Fijarnos en lo que nos sale en la terminal: 
-            Resource requested:  /operation
-            Parameters: {'sequence': ['AAAA'], 'calculation': ['Comp']}"""
+            try:
 
-            sequence = arguments['sequence'][0]
-            operation = arguments['calculation'][0]
+                """ Fijarnos en lo que nos sale en la terminal: 
+                Resource requested:  /operation
+                Parameters: {'sequence': ['AAAA'], 'calculation': ['Comp']}"""
 
-
-            if operation == 'Info':
-                contents = su.info(sequence, operation)
-            elif operation == 'Comp':
-                contents = su.comp(sequence, operation)
-            else:
-                contents = su.rev(sequence, operation)
+                sequence = arguments['sequence'][0]
+                operation = arguments['calculation'][0]
 
 
+                if operation == 'Info':
+                    contents = su.info(sequence, operation)
+                elif operation == 'Comp':
+                    contents = su.comp(sequence, operation)
+                else:
+                    contents = su.rev(sequence, operation)
 
+            except KeyError:
+                contents = su.read_template_html_file("./html/error.html").render()
         else:
             contents = su.read_template_html_file("./html/error.html").render()
 

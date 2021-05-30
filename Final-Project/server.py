@@ -74,6 +74,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 dict_information = su.get_info(ENDPOINT)
 
                 limit = arguments['limit'][0] #Es una lista por tanto cogemos sólo el elemento en posición 0
+
                 if int(limit) > len(dict_information['species']):
                     limit = len(dict_information['species'])
 
@@ -83,7 +84,8 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         contents = json.dumps(context)
                         content_type = 'application/json'
                         error_code = 200
-
+                    else:
+                        contents = su.read_template_html_file("./html/error.html").render()
                 else:
                     context = su.info_listSpecies(dict_information, limit)
                     contents = read_template_html_file("./html/listSpecies.html").render(context=context) #lo naranja siempre
@@ -92,7 +94,10 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             except ValueError:
                 contents = su.read_template_html_file("./html/error.html").render()
             except KeyError:
-                contents = su.read_template_html_file("./html/error.html").render()
+                limit = len(dict_information['species'])
+                context = su.info_listSpecies(dict_information, limit)
+                contents = read_template_html_file("./html/listSpecies.html").render(context=context)
+                #contents = su.read_template_html_file("./html/error.html").render()
 
 
         elif path_name == '/karyotype':
@@ -101,7 +106,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             Parameters: {'specie': ['mouse']}"""
 
             try: #Tenemos que controlar que la especie que introduce exista
-                specie = arguments['specie'][0]
+                specie = arguments['specie'][0].replace(' ', '_')
                 ENDPOINT = '/info/assembly/' + str(specie)
                 dict_information = su.get_info(ENDPOINT)  #Extraer la información de la especie deseada
 
@@ -111,6 +116,10 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         contents = json.dumps(context)
                         content_type = 'application/json'
                         error_code = 200
+                    else:
+                        contents = su.read_template_html_file("./html/error.html").render()
+
+
                 else:
                     # Ahora tenemos que enviarle el contenido dict_information a la función que se encargue
                     # de sacar la informacion de ese diccionario para posteriormente enviarla al html correspondiente.
@@ -127,7 +136,8 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             Parameters: {'specie': ['mouse'], 'chromo': ['18']}"""
 
             try: #Tenemos que asegurarnos de que el cromosoma y la especie existan
-                specie = arguments['specie'][0]
+                specie = arguments['specie'][0].replace(' ', '_')
+                print('SPECIE MOD:', specie)
                 chromo = arguments['chromo'][0]
 
                 # /info/assembly/homo_sapiens?content-type=application/json
@@ -141,6 +151,8 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         contents = json.dumps(context)
                         content_type = 'application/json'
                         error_code = 200
+                    else:
+                        contents = su.read_template_html_file("./html/error.html").render()
 
                 else:
                     context = su.info_chromoLength(dict_information, chromo)
@@ -148,6 +160,9 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
             except KeyError:
                 contents = su.read_template_html_file("./html/error.html").render()
+            except IndexError:
+                contents = su.read_template_html_file("./html/error.html").render()
+
 
         elif path_name == '/geneSeq':
             """Resource requested:  /geneSeq
@@ -169,6 +184,8 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         contents = json.dumps(context)
                         content_type = 'application/json'
                         error_code = 200
+                    else:
+                        contents = su.read_template_html_file("./html/error.html").render()
                 else:
                     context = su.geneSeq(dict_information, gene)
                     contents = read_template_html_file("./html/geneSeq.html").render(context=context)
@@ -190,6 +207,8 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         contents = json.dumps(context)
                         content_type = 'application/json'
                         error_code = 200
+                    else:
+                        contents = su.read_template_html_file("./html/error.html").render()
                 else:
                     context = su.geneInfo(dict_information, gene)
                     print(context)
@@ -212,6 +231,8 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         contents = json.dumps(context)
                         content_type = 'application/json'
                         error_code = 200
+                    else:
+                        contents = su.read_template_html_file("./html/error.html").render()
                 else:
                     context = su.geneCalc(dict_information, gene)
                     print(context)
