@@ -35,7 +35,7 @@ class Client:
 
         # establish the connection to the Server (IP, PORT)
         s.connect((self.ip, self.port))
-        print('Connection to SERVER at :', self.ip, self.port)
+        #print('Connection to SERVER at :', self.ip, self.port)
 
         # Send data
 

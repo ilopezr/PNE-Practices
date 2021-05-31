@@ -8,7 +8,7 @@ client = Client(IP, PORT) #Client creado
 
 correct = True
 while correct:
-    msg = input('Enter here the command you want to test: ')
+    msg = input('Enter here the command you want to test: ').replace(' ', '').upper()
 
     if msg == 'EXIT':
         print('The process has finished correctly.')
