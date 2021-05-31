@@ -52,7 +52,7 @@ while True:
     formatted_message = server_utils.format_command(msg)
     #print(termcolor.colored(formatted_message, 'green'))
     formatted_message = formatted_message.split(" ")
-    #print(formatted_message)#En el caso del GET 2, divide el mensaje en una lista con, 'GET' y con 2
+    print(formatted_message)#En el caso del GET 2, divide el mensaje en una lista con, 'GET' y con 2
 
 
     #Cuando tenemos una string, y usamos el split, este lo que hace es crear una lista con elementos separados por lo que hay dentro del paréntesis del split
@@ -67,7 +67,10 @@ while True:
         server_utils.ping(cs)
 
     elif command == 'GET':
-        server_utils.get(cs, list_sequences, argument)
+        try:
+            server_utils.get(cs, list_sequences, argument)
+        except IndexError:
+            cs.send(str('Index out of range. Try again').encode())
 
     elif command == 'INFO':
         server_utils.info(cs, argument)
@@ -79,7 +82,11 @@ while True:
         server_utils.rev(cs, argument)
 
     elif command == 'GENE':
-        server_utils.gene(cs, argument)
+        try:
+            server_utils.gene(cs, argument)
+        except UnboundLocalError:
+            cs.send(str('Incorrect gene. Try with this ones: U5, ADA, FRAT1, FXN or RNU6_269P').encode())
+
 
     else:
         response = 'Not available command '
