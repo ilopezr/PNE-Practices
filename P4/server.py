@@ -57,6 +57,7 @@ def process_client(s):
         try:
             #Where is the letter? It is in path_name.split('/')[-1] so here we are going to take A G T C
             body = read_html_file(HTML_ASSETS + path_name.split('/')[-1] + '.html' )
+
             """if path_name == "/info/A":
                 body = read_html_file(HTML_ASSETS + "A.html") #specify the path
             elif path_name == "/info/C":
